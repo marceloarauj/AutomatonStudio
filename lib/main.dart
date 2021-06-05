@@ -1,3 +1,4 @@
+import 'package:estudio_automato/automaton/Fda.View.dart';
 import 'package:estudio_automato/project/Projects.View.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,8 +24,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/":(context) => InicioView(),
-        "/projects": (context) => ProjectsView()
+        "/":          (context) => InicioView(),
+        "/projects":  (context) => ProjectsView(),
+        "/fda":       (context) => FdaView()
       },
     );
   }
