@@ -20,7 +20,6 @@ class _ProjectsViewState extends State<ProjectsView> {
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
         child: Center(
       child: Container(
@@ -53,6 +52,26 @@ class _ProjectsViewState extends State<ProjectsView> {
                           icon: Icons.folder_open_outlined,
                           fx: _rules.newFiniteDeterministicAutomaton(context),
                           label: Language.fda,
+                        )
+                      ])),
+                ])),
+            Padding(
+                padding: EdgeInsets.only(top: fivePercent()),
+                child: Row(children: [
+                  Padding(
+                      padding: EdgeInsets.only(left: fivePercent() * 1.5),
+                      child: MenuButton(
+                        icon: Icons.create_outlined,
+                        fx: _rules.newFiniteDeterministicAutomaton(context),
+                        label: Language.stackFda,
+                      )),
+                  Padding(
+                      padding: EdgeInsets.only(left: fivePercent()),
+                      child: Column(children: [
+                        MenuButton(
+                          icon: Icons.folder_open_outlined,
+                          fx: _rules.newFiniteDeterministicAutomaton(context),
+                          label: Language.grammar,
                         )
                       ])),
                 ]))

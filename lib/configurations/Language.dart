@@ -9,6 +9,8 @@ class Language {
   static String start = "Welcome !";
   static String fda   = "New D.F.A";
   static String fnda  = "New N.F.D.A";
+  static String stackFda = "New Stack Automaton";
+  static String grammar = "New Grammar";
 
   static void changeLanguage(LanguageEnum language){
     
@@ -19,6 +21,8 @@ class Language {
         start = "Bem vindo !";
         fda   = "Novo A.F.D";
         fnda  = "Novo A.F.N.D";
+        stackFda = "Novo Autômato com pilha";
+        grammar = "Nova Gramática";
 
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
@@ -29,6 +33,8 @@ class Language {
         start = "Welcome !";
         fda   = "New D.F.A";
         fnda  = "New N.F.D.A";
+        stackFda = "New Stack Automaton";
+        grammar = "New Grammar";
 
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;

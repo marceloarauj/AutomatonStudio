@@ -2,6 +2,7 @@ import 'package:estudio_automato/components/MenuButton.dart';
 import 'package:estudio_automato/configurations/Language.dart';
 import 'package:estudio_automato/init/Init.Rules.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InicioView extends StatefulWidget {
   InicioView({Key? key}) : super(key: key);
@@ -13,14 +14,12 @@ class InicioView extends StatefulWidget {
 class _InicioView extends State<InicioView> {
   InitRules _rules = InitRules();
 
-  @override
-  Widget build(BuildContext context) {
-    double fivePercent() {
-      return MediaQuery.of(context).size.height * 0.05;
-    }
+  double fivePercent() {
+    return MediaQuery.of(context).size.height * 0.05;
+  }
 
-    return Scaffold(
-        floatingActionButton: FloatingActionButton(
+  FloatingActionButton floatingButton(){
+    return FloatingActionButton(
             backgroundColor: Colors.transparent,
             onPressed: () {
               setState(() {
@@ -31,7 +30,14 @@ class _InicioView extends State<InicioView> {
                 }
               });
             },
-            child: Language.selectedIcon),
+            child: Language.selectedIcon);
+  }
+
+  @override
+  Widget build(BuildContext context){
+    
+    return Scaffold(
+        floatingActionButton: floatingButton(),
         body: Center(
             child: Container(
           width: MediaQuery.of(context).size.width,

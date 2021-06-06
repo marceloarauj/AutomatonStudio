@@ -7,7 +7,7 @@ class State{
 }
 
 class Transition{
-  String? flag;
+  List<String>? transitionFlags;
   State? fromState;
   State? toState;
 }
