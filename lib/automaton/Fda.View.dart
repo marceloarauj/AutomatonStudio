@@ -1,3 +1,4 @@
+import 'package:estudio_automato/automaton/Fda.Rules.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
@@ -26,31 +27,30 @@ class _FdaViewState extends State<FdaView> {
     super.dispose();
   }
 
+  
   @override
   Widget build(BuildContext context) {
 
+    FdaRules rules = FdaRules();
+    
     return Container(child: Row(
       children: [
-        Tools(options:fdaTools()),
-        MapScreen()
+        Tools(options:fdaTools(rules)),
+        GestureDetector(
+          child: MapScreen(),
+          onTapDown: rules.screenClick
+        )
       ],
     ));
   }
 
-  List<ToolElement> fdaTools(){
+  List<ToolElement> fdaTools(FdaRules rules){
     List<ToolElement> tools = [];
     
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
-    tools.add(new ToolElement(icon: Icons.touch_app,));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/cursor.png"), fx: rules.setCursorTool()));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/normal_state.png"),fx:rules.setStateTool()));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/final_state.png"), fx:rules.setFinalStateTool()));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/transition.png"), fx: rules.setTransitionTool()));
 
     return tools;
   }

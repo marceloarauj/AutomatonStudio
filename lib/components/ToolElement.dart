@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ToolElement extends StatefulWidget {
-  const ToolElement({Key? key, this.icon, this.fx}) : super(key: key);
+  const ToolElement({Key? key, this.fx, required this.imageIcon}) : super(key: key);
 
-  final IconData? icon;
+  final Image imageIcon;
   final Function? fx;
 
   @override
@@ -18,8 +18,17 @@ class _ToolElementState extends State<ToolElement> {
     return Container(
       width: iconSize,
       height: iconSize,
+                decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[
+                Colors.white,
+                Colors.purple.shade200,
+                Colors.lightBlueAccent.shade700
+              ])),
       child: OutlinedButton(
-          child: Icon(widget.icon, color: Colors.black87),
+          child: widget.imageIcon,
           onPressed: () => {widget.fx!.call()}),
     );
   }
