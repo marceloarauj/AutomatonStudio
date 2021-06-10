@@ -1,9 +1,11 @@
+import 'package:estudio_automato/automaton/AutomatonState.dart';
 import 'package:flutter/material.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key, this.child}) : super(key: key);
+  MapScreen({Key? key, required this.child, required this.axis}) : super(key: key);
 
-  final Widget? child;
+  final Widget child;
+  final Function axis;
 
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -11,35 +13,39 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   TransformationController _transformator = TransformationController();
+  double sizeC = 100000;
+  
+  updateContainer(){
+    double x = _transformator.value.getTranslation().x;
+    double y = _transformator.value.getTranslation().y;
 
-  double getX(){
-    return _transformator.value.getTranslation().x;
+    widget.axis(x,y);
   }
 
-  double getY(){
-    return _transformator.value.getTranslation().y;
+  @override
+  void initState() {
+    _transformator.addListener(updateContainer);
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width * 0.9;
+    double height = MediaQuery.of(context).size.height;
+    
     return Material(
       child: Container(
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         color: Colors.grey.shade900,
       ),
       child: InteractiveViewer(
         constrained: false,
           transformationController: _transformator,
-          boundaryMargin: const EdgeInsets.all(900),
           scaleEnabled: false,
-          child: Container(width: 100,height: 100,child: Column(children: [
-            OutlinedButton(onPressed: () { setState(() {
-            }); },
-            child: Text("att"),),
-            Text(_transformator.value.getTranslation().x.toString())
-          ],),color: Colors.red,))
+          child: Container(color: Colors.grey.shade900,width:sizeC , height:sizeC , child: widget.child)
     )
-    );
+    ));
   }
 }

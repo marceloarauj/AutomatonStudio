@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+class Transition{
+  List<String>? transitionFlags;
+  State? fromState;
+  State? toState;
+}
 
-class AutomatonState{
-
+class AutomatonState {
+  
   String? label;
   bool initialState = false;
   bool finalState = false;
   Image stateImage = Image.asset("assets/normal_state.png");
   double posX = 0.0;
   double posY = 0.0;
-  double relativePosX = 0.0;
-  double relativePosY = 0.0;
 
   makeInitial(){
     this.initialState = true;
@@ -24,10 +27,4 @@ class AutomatonState{
     finalState = false;
     stateImage = Image.asset("assets/normal_state.png");
   }
-}
-
-class Transition{
-  List<String>? transitionFlags;
-  State? fromState;
-  State? toState;
 }

@@ -1,3 +1,4 @@
+import 'package:estudio_automato/automaton/AutomatonState.dart';
 import 'package:estudio_automato/automaton/Fda.Rules.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
@@ -27,23 +28,46 @@ class _FdaViewState extends State<FdaView> {
     super.dispose();
   }
 
-  
-  @override
-  Widget build(BuildContext context) {
+  FdaRules rules = FdaRules();
 
-    FdaRules rules = FdaRules();
-    
+  updateAxis(double x, double y){
+      rules.screenX = x;
+      rules.screenY = y;
+  }
+
+  @override
+  Widget build(BuildContext context) { 
+
     return Container(child: Row(
       children: [
         Tools(options:fdaTools(rules)),
         GestureDetector(
-          child: MapScreen(),
-          onTapDown: rules.screenClick
+          child: MapScreen(child: Map(),axis:updateAxis),
+          onTapDown: (TapDownDetails details)=> {
+            rules.screenClick(details),
+            setState((){})
+          },
         )
       ],
     ));
   }
 
+  Widget Map(){
+    List<Widget> children = [];
+
+    for(int x = 0; x < rules.stateList.length; x++){
+      AutomatonState state = rules.stateList[x];
+
+      children.add(
+        Transform(
+          transform: Matrix4.translationValues(state.posX, state.posY, 0),
+          child: Container(child: state.stateImage)
+        )
+      );
+    }
+
+    return Stack(children: children);
+  }
   List<ToolElement> fdaTools(FdaRules rules){
     List<ToolElement> tools = [];
     
