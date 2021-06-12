@@ -1,8 +1,23 @@
-[
-    {
-        "label":"label",
-        "isInitial":false,
-        "isFinal":false,
-        "transitions":[]
-    }
-]
+{
+    "States":[
+        {
+            "id":12,
+            "label":"Label state",
+            "x":200,
+            "y":300
+        },
+        {
+            "id":13,
+            "label":"Label state 2",
+            "x":500,
+            "y":100
+        }
+    ],
+    "Transitions":[
+        {
+            "from":12,
+            "to":13,
+            "flags":["a","b","c"]
+        }
+    ]
+}

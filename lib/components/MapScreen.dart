@@ -1,5 +1,6 @@
 import 'package:estudio_automato/automaton/AutomatonState.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class MapScreen extends StatefulWidget {
   MapScreen({Key? key, required this.child, required this.axis}) : super(key: key);
@@ -23,7 +24,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   @override
-  void initState() {
+  void initState() {    
     _transformator.addListener(updateContainer);
     super.initState();
   }
@@ -32,7 +33,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width * 0.9;
     double height = MediaQuery.of(context).size.height;
-    
+
     return Material(
       child: Container(
       width: width,

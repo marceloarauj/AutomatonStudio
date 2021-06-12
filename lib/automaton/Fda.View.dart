@@ -71,10 +71,10 @@ class _FdaViewState extends State<FdaView> {
   List<ToolElement> fdaTools(FdaRules rules){
     List<ToolElement> tools = [];
     
-    tools.add(new ToolElement(imageIcon: Image.asset("assets/cursor.png"), fx: rules.setCursorTool()));
-    tools.add(new ToolElement(imageIcon: Image.asset("assets/normal_state.png"),fx:rules.setStateTool()));
-    tools.add(new ToolElement(imageIcon: Image.asset("assets/final_state.png"), fx:rules.setFinalStateTool()));
-    tools.add(new ToolElement(imageIcon: Image.asset("assets/transition.png"), fx: rules.setTransitionTool()));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/cursor.png"), fx: rules.setCursorTool(this), selected: !rules.disableSelectedButton(ToolOption.Cursor)));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/normal_state.png"),fx:rules.setStateTool(this), selected: !rules.disableSelectedButton(ToolOption.State)));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/final_state.png"), fx:rules.setFinalStateTool(this), selected: !rules.disableSelectedButton(ToolOption.FinalState)));
+    tools.add(new ToolElement(imageIcon: Image.asset("assets/transition.png"), fx: rules.setTransitionTool(this), selected: !rules.disableSelectedButton(ToolOption.Transition)));
 
     return tools;
   }
