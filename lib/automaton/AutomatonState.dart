@@ -7,6 +7,7 @@ class AutomatonState {
   Image stateImage = Image.asset("assets/normal_state.png");
   double posX = 0.0;
   double posY = 0.0;
+  int ID = 0;
 
   makeInitial(){
     this.initialState = true;

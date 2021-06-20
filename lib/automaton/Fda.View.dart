@@ -67,6 +67,12 @@ class _FdaViewState extends State<FdaView> {
       );
     }
 
+    for(int x = 0; x < rules.transitionList.length; x++){
+      children.add(CustomPaint(
+        painter: rules.transitionList[x],
+      ));
+    }
+
     return Stack(children: children);
   }
   List<ToolElement> fdaTools(FdaRules rules){

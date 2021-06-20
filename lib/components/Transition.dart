@@ -3,13 +3,64 @@ import 'package:flutter/material.dart';
 
 class Transition extends CustomPainter{
   
-  double? from;
-  double? to;
+  double fromX;
+  double fromY;
+  double toX;
+  double toY;
   List<String>? transitions;
+  int fromID;
+  int toID;
 
-  Transition({required double from, required double to}){
-    this.from = from;
-    this.to = to;
+  Transition(this.fromX, this.fromY,this.toX,this.toY,this.fromID,this.toID){
+
+    _UpdateArrowDirection();
+  }
+
+  void _UpdateArrowDirection(){
+    //right validations
+    if(toX > fromX){
+      fromX = fromX + 50;
+      if(toY < fromY){
+        toY = toY - fromY + 50;
+        toX = toX - fromX;
+      }
+      else if(toY == fromY){
+        fromY = fromY + 25;
+      }
+      else if(toY > fromY){
+        fromY = fromY + 50;
+        toY = toY - fromY;
+        toX = toX - fromX;
+      }
+    }
+    //left validations
+    else if(toX < fromX){
+      if(toY < fromY){
+        toX = toX - fromX + 50;
+        toY = toY - fromY + 50;
+      }
+      else if(toY == fromY){
+        fromY = fromY + 25;
+      }
+      else if(toY > fromY){
+        toX = toX - fromX + 50;
+        toY = toY - fromY - 50;
+        fromY = fromY + 50;
+      }
+    }
+    //middle X validations
+    else if(toX == fromX){
+      fromX = fromX + 25;
+      if(toY < fromY){
+        fromY = 0;
+      }
+      else if(toY == fromY){
+        fromY = fromY + 25;
+      }
+      else if(toY > fromY){
+        fromY = fromY + 50;
+      }
+    }
   }
 
   @override
@@ -21,21 +72,12 @@ class Transition extends CustomPainter{
     paint.strokeJoin = StrokeJoin.round;
     paint.strokeWidth = 3.0;
 
-    double x0 = 100; // inicio da seta em X
-    double y0 = 100; // inicio da seta em Y
-
-    double x1 = 0; // não sei como funciona essa curva ainda
-    double y1 = 0; // não sei como funciona essa curva ainda
-
-    double x2 = 0; // onde em X a seta vai fazer a curva para chegar no destino
-    double y2 = 0; // onde em Y a seta vai fazer a curva para chegar no destino
-
-    double x3 = 500; // destino em X
-    double y3 = 200; // destino em Y
+    double x2 = 10; // onde em X a seta vai fazer a curva para chegar no destino
+    double y2 = 10; // onde em Y a seta vai fazer a curva para chegar no destino
 
     Path arrowPath = Path();
-    arrowPath.moveTo(x0, y0);
-    arrowPath.relativeCubicTo(x0, y0, x2, y2, x3, y3);
+    arrowPath.moveTo(fromX, fromY);
+    arrowPath.relativeCubicTo(0, 0, x2, y2, toX, toY);
     arrowPath = ArrowPath.make(path: arrowPath);
     canvas.drawPath(arrowPath, paint..color = Colors.purple.shade300);
   }
