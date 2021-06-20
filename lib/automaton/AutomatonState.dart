@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-class Transition{
-  List<String>? transitionFlags;
-  State? fromState;
-  State? toState;
-}
-
 class AutomatonState {
   
   String? label;

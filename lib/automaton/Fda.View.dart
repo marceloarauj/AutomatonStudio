@@ -3,6 +3,7 @@ import 'package:estudio_automato/automaton/Fda.Rules.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
+import 'package:estudio_automato/components/Transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -54,7 +55,7 @@ class _FdaViewState extends State<FdaView> {
 
   Widget Map(){
     List<Widget> children = [];
-
+        
     for(int x = 0; x < rules.stateList.length; x++){
       AutomatonState state = rules.stateList[x];
 
