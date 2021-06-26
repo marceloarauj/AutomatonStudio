@@ -7,7 +7,7 @@ class Transition extends CustomPainter{
   double fromY;
   double toX;
   double toY;
-  List<String>? transitions;
+  List<String> chars = [];
   int fromID;
   int toID;
 

@@ -1,5 +1,5 @@
-import 'package:estudio_automato/automaton/AutomatonState.dart';
-import 'package:estudio_automato/automaton/Fda.Rules.dart';
+import 'package:estudio_automato/FDA/AutomatonState.dart';
+import 'package:estudio_automato/FDA/Fda.Rules.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
@@ -41,7 +41,7 @@ class _FdaViewState extends State<FdaView> {
 
     return Container(child: Row(
       children: [
-        Tools(options:fdaTools(rules)),
+        Tools(options:fdaTools(rules),execute: rules.execute("testes")),
         GestureDetector(
           child: MapScreen(child: Map(),axis:updateAxis),
           onTapDown: (TapDownDetails details)=> {

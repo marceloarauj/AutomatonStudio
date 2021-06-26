@@ -70,6 +70,7 @@ class FdaRules{
       AutomatonState to = stateList[stateList.length - 1];
 
       Transition transition = Transition(from.posX,from.posY,to.posX,to.posY,from.ID,to.ID);
+      transition.chars = ["t","e","s","t","e"];
       transitionList.add(transition);
     }
   }
@@ -84,14 +85,54 @@ class FdaRules{
     return false;
   }
 
-  bool processEntrance(String entrance){
-    AutomatonState initial = stateList.where((element) => element.initialState == true).first;
-    AutomatonState actualState = initial;
-
-
+  bool canExecute(){
     return false;
   }
 
+  Function execute(String entrance){
+    return (){
+
+      if(stateList.isEmpty)
+        return false;
+
+      AutomatonState initial = stateList.where((element) => element.initialState == true).first;
+      AutomatonState actualState = initial;
+      List<Transition> transitions = transitionList.where((element) => element.fromID == actualState.ID).toList();
+
+      if(transitions == null || transitions.isEmpty){
+        return false;
+      }
+
+      bool accept = recursiveTransition(entrance,actualState);
+      print(accept);
+      return accept;
+    };
+  }
+
+  bool recursiveTransition(String entrance,AutomatonState actualState){
+      String actualChar = entrance[0];
+      print(actualChar); print(actualState.ID);
+      entrance = entrance.substring(1);
+      bool transitioned = false;
+      List<Transition> transitions = transitionList.where((element) => element.fromID == actualState.ID).toList();
+      
+      for (Transition transition in transitions) {
+        List<String> chars = transition.chars;
+
+        for (String char in chars) {
+            if(char == actualChar){
+              actualState = stateList.where((element) => element.ID == transition.toID).first;
+              transitions = transitionList.where((element) => element.fromID == actualState.ID).toList();
+              transitioned = true;
+              break;
+            }
+        }
+        if(transitioned)
+          break;
+      }
+      return transitioned && entrance.length > 0 ? 
+                recursiveTransition(entrance, actualState) : (entrance.length == 0 && actualState.finalState);
+  }
 }
 
 enum ToolOption{
