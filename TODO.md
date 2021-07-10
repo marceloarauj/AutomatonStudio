@@ -1,4 +1,3 @@
-- modal de alerta
 - modal de execução de automatos
 - Transition on click
 - Draggable zone 
