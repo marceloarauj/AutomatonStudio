@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class Alert extends StatefulWidget {
-  Alert({ Key? key, required this.type, required this.text, required this.show}) : super(key: key);
+  Alert({ Key? key, required this.type, required this.text, required this.show, required this.alertCallback}) : super(key: key);
 
   final AlertType type;
   final String text;
   final bool show;
+  Function alertCallback;
 
   @override
   _AlertState createState() => _AlertState();
@@ -23,6 +24,8 @@ class _AlertState extends State<Alert> {
     if(!widget.show)
       return Container();
 
+    widget.alertCallback();
+  
     switch (widget.type) {
       case AlertType.Error: return Error(width,height);
       case AlertType.Info: return Info(width,height);

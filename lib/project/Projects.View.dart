@@ -18,7 +18,6 @@ class _ProjectsViewState extends State<ProjectsView> {
   }
 
   ProjectsRules _rules = ProjectsRules();
-  bool showAlert = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class _ProjectsViewState extends State<ProjectsView> {
                 Colors.indigo.shade600
               ])),
           child: Column(children: [
-            Alert(show:showAlert, text: 'Um AFD requer um estado inicial',type: AlertType.Info),
+            Alert(show:_rules.showAlert, text: _rules.text,type: AlertType.Info,alertCallback: _rules.alertTimer(this)),
             Padding(
                 padding: EdgeInsets.only(top: fivePercent()),
                 child: Row(children: [
@@ -65,7 +64,10 @@ class _ProjectsViewState extends State<ProjectsView> {
                       padding: EdgeInsets.only(left: fivePercent() * 1.5),
                       child: MenuButton(
                         icon: Icons.lock,
-                        fx: null,
+                        fx: () =>{setState(()=>{
+                          _rules.showAlert = true,
+                          _rules.text = Language.alertStackAutomaton
+                        })},
                         label: Language.stackFda,
                       )),
                   Padding(
@@ -74,7 +76,8 @@ class _ProjectsViewState extends State<ProjectsView> {
                         MenuButton(
                           icon: Icons.lock,
                           fx: () =>{setState(()=>{
-                            this.showAlert = !showAlert
+                            _rules.showAlert = true,
+                            _rules.text = Language.alertGrammar
                           })},
                           label: Language.grammar,
                         )

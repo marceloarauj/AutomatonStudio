@@ -3,6 +3,7 @@ import 'package:country_icons/country_icons.dart';
 
 class Language {
 
+  // options
   static LanguageEnum selected = LanguageEnum.English;
   static Image selectedIcon = Image.asset('icons/flags/png/gb.png', package: 'country_icons');
   static String newProject = "New Project";
@@ -15,6 +16,10 @@ class Language {
   static String fnda  = "New N.F.D.A";
   static String stackFda = "New Stack Automaton";
   static String grammar = "New Grammar";
+
+  //alerts
+  static String alertGrammar = "Grammar unavaible";
+  static String alertStackAutomaton = "Stack Automaton unavaible";
 
   static void changeLanguage(LanguageEnum language){
     
@@ -31,6 +36,8 @@ class Language {
         fnda  = "Novo A.F.N.D";
         stackFda = "Novo Autômato com pilha";
         grammar = "Nova Gramática";
+        alertGrammar = "Gramática indisponível";
+        alertStackAutomaton = "Autômato com pilha indisponível";
 
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
@@ -47,6 +54,9 @@ class Language {
         fnda  = "New N.F.D.A";
         stackFda = "New Stack Automaton";
         grammar = "New Grammar";
+        alertGrammar = "Grammar unavaible";
+        alertStackAutomaton = "Stack Automaton unavaible";
+
 
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;
