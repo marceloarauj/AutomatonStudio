@@ -1,7 +1,3 @@
--- executar 
-
-expo start --localhost --android
-
 Implementação de linguagens formais e autômatos
 
 - Aplicar Autômatos deterministicos e não deterministicos
