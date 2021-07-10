@@ -5,6 +5,10 @@ class Language {
 
   static LanguageEnum selected = LanguageEnum.English;
   static Image selectedIcon = Image.asset('icons/flags/png/gb.png', package: 'country_icons');
+  static String newProject = "New Project";
+  static String loadProject = "Open Project";
+  static String help = "Guide";
+  static String exit = "Exit";
   static String title = "Automaton Studio";
   static String start = "Welcome !";
   static String fda   = "New D.F.A";
@@ -19,6 +23,10 @@ class Language {
       case LanguageEnum.Portuguese:
         title = "Estúdio Autômato";
         start = "Bem vindo !";
+        newProject = "Novo Projeto";
+        loadProject = "Abrir Projeto";
+        help = "Guia";
+        exit = "Sair";
         fda   = "Novo A.F.D";
         fnda  = "Novo A.F.N.D";
         stackFda = "Novo Autômato com pilha";
@@ -31,6 +39,10 @@ class Language {
       case LanguageEnum.English:
         title = "Automaton Studio";
         start = "Welcome !";
+        newProject = "New Project";
+        loadProject = "Open Project";
+        help = "Guide";
+        exit = "Exit";
         fda   = "New D.F.A";
         fnda  = "New N.F.D.A";
         stackFda = "New Stack Automaton";

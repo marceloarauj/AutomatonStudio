@@ -104,7 +104,7 @@ class FdaRules{
       }
 
       bool accept = recursiveTransition(entrance,actualState);
-      print(accept);
+      
       return accept;
     };
   }

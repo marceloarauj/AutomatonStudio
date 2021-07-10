@@ -79,7 +79,7 @@ class Transition extends CustomPainter{
     arrowPath.moveTo(fromX, fromY);
     arrowPath.relativeCubicTo(0, 0, x2, y2, toX, toY);
     arrowPath = ArrowPath.make(path: arrowPath);
-    canvas.drawPath(arrowPath, paint..color = Colors.purple.shade300);
+    canvas.drawPath(arrowPath, paint..color = Colors.indigo.shade300);
   }
 
 

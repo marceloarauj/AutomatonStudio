@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     return MaterialApp(
+      
       title: 'Automaton Studio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

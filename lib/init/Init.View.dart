@@ -35,6 +35,7 @@ class _InicioView extends State<InicioView> {
 
   @override
   Widget build(BuildContext context){
+    Image logo = Image.asset("assets/logo.png");
     
     return Scaffold(
         floatingActionButton: floatingButton(),
@@ -47,16 +48,16 @@ class _InicioView extends State<InicioView> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
+                Colors.green.shade800,
                 Colors.white,
-                Colors.purple.shade200,
-                Colors.lightBlueAccent.shade700
+                Colors.indigo.shade600
               ])),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(
                   padding: EdgeInsets.only(top: 50, bottom: 20),
-                  child: Image.asset("assets/logo.png")),
+                  child: logo),
               Text(
                 Language.title,
                 style: TextStyle(fontSize: 30, fontFamily: "Tittilium"),
@@ -71,12 +72,13 @@ class _InicioView extends State<InicioView> {
                     Padding(
                         padding: EdgeInsets.only(left: fivePercent() * 1.5),
                         child: MenuButton(
-                          icon: Icons.create_outlined,
-                          fx: _rules.NewProject(context),
+                          icon: Icons.app_registration,
+                          fx: _rules.NewProject(context,),
+                          label: Language.newProject,
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: fivePercent()),
-                        child: MenuButton(icon: Icons.folder_open_outlined)),
+                        child: MenuButton(icon: Icons.folder_open_outlined,label: Language.loadProject)),
                   ])),
               Padding(
                   padding: EdgeInsets.only(
@@ -86,10 +88,12 @@ class _InicioView extends State<InicioView> {
                         padding: EdgeInsets.only(left: fivePercent() * 1.5),
                         child: MenuButton(
                           icon: Icons.help_outline,
+                          label: Language.help
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: fivePercent()),
                         child: MenuButton(
+                            label: Language.exit,
                             icon: Icons.exit_to_app, fx: _rules.closeApp())),
                   ]))
             ],

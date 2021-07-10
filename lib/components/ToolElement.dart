@@ -27,9 +27,8 @@ class _ToolElementState extends State<ToolElement> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                Colors.white,
-                Colors.purple.shade200,
-                Colors.lightBlueAccent.shade700
+                        Colors.white,
+                        Colors.indigo.shade700
               ])),
       child: OutlinedButton(
           child: widget.imageIcon,
@@ -43,8 +42,8 @@ class _ToolElementState extends State<ToolElement> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                Colors.grey.shade300,
-                Colors.grey.shade900,
+                        Colors.grey.shade500,
+                        Colors.grey.shade700
               ])),
       child: widget.imageIcon
     );

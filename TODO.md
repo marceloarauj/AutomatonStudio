@@ -1,0 +1,7 @@
+- modal de alerta
+- modal de execução de automatos
+- Transition on click
+- Draggable zone 
+- Correção das transições
+- Fnda
+- Salvar predefinições de linguagem ao reiniciar app

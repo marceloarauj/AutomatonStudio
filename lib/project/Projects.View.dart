@@ -1,3 +1,4 @@
+import 'package:estudio_automato/components/Alert.dart';
 import 'package:estudio_automato/components/MenuButton.dart';
 import 'package:estudio_automato/configurations/Language.dart';
 import 'package:estudio_automato/project/Projects.Rules.dart';
@@ -17,6 +18,7 @@ class _ProjectsViewState extends State<ProjectsView> {
   }
 
   ProjectsRules _rules = ProjectsRules();
+  bool showAlert = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +32,19 @@ class _ProjectsViewState extends State<ProjectsView> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
+                Colors.green.shade800,
                 Colors.white,
-                Colors.purple.shade200,
-                Colors.lightBlueAccent.shade700
+                Colors.indigo.shade600
               ])),
           child: Column(children: [
+            Alert(show:showAlert, text: 'Um AFD requer um estado inicial',type: AlertType.Info),
             Padding(
                 padding: EdgeInsets.only(top: fivePercent()),
                 child: Row(children: [
                   Padding(
                       padding: EdgeInsets.only(left: fivePercent() * 1.5),
                       child: MenuButton(
-                        icon: Icons.create_outlined,
+                        icon: Icons.hdr_auto_outlined,
                         fx: _rules.newFiniteDeterministicAutomaton(context),
                         label: Language.fnda,
                       )),
@@ -49,7 +52,7 @@ class _ProjectsViewState extends State<ProjectsView> {
                       padding: EdgeInsets.only(left: fivePercent()),
                       child: Column(children: [
                         MenuButton(
-                          icon: Icons.folder_open_outlined,
+                          icon: Icons.hdr_strong_outlined,
                           fx: _rules.newFiniteDeterministicAutomaton(context),
                           label: Language.fda,
                         )
@@ -61,16 +64,18 @@ class _ProjectsViewState extends State<ProjectsView> {
                   Padding(
                       padding: EdgeInsets.only(left: fivePercent() * 1.5),
                       child: MenuButton(
-                        icon: Icons.create_outlined,
-                        fx: _rules.newFiniteDeterministicAutomaton(context),
+                        icon: Icons.lock,
+                        fx: null,
                         label: Language.stackFda,
                       )),
                   Padding(
                       padding: EdgeInsets.only(left: fivePercent()),
                       child: Column(children: [
                         MenuButton(
-                          icon: Icons.folder_open_outlined,
-                          fx: _rules.newFiniteDeterministicAutomaton(context),
+                          icon: Icons.lock,
+                          fx: () =>{setState(()=>{
+                            this.showAlert = !showAlert
+                          })},
                           label: Language.grammar,
                         )
                       ])),

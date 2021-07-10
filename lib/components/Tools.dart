@@ -52,9 +52,8 @@ class _ToolsState extends State<Tools> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: <Color>[
-                  Colors.white,
-                  Colors.purple.shade100,
-                  Colors.lightBlueAccent.shade700
+                        Colors.white,
+                        Colors.indigo.shade700
                 ])),
             child: OutlinedButton(
               onPressed: () => {_scrollUp()},
@@ -75,9 +74,8 @@ class _ToolsState extends State<Tools> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: <Color>[
-                    Colors.white,
-                    Colors.purple.shade100,
-                    Colors.lightBlueAccent.shade700
+                        Colors.white,
+                        Colors.indigo.shade700
                   ])),
               child: OutlinedButton(
                 onPressed: () => {_scrollDown()},
@@ -91,8 +89,8 @@ class _ToolsState extends State<Tools> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                Colors.white,
-                Colors.purple.shade100,
+                        Colors.white,
+                        Colors.indigo.shade700
               ])),
               child: OutlinedButton(
                 onPressed: () => {widget.execute.call()},
@@ -106,8 +104,8 @@ class _ToolsState extends State<Tools> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                Colors.white,
-                Colors.purple.shade100,
+                        Colors.white,
+                        Colors.indigo.shade700
               ])),
               child: OutlinedButton(
                 onPressed: () => {},

@@ -24,14 +24,14 @@ class _MenuButtonState extends State<MenuButton> {
         onPressed:()=> {widget.fx!.call()},
         child: Icon(
           widget.icon,
-          color: Colors.white,
-          size: 90,
+          color: Colors.grey.shade900,
+          size: 80,
         ),
         style: OutlinedButton.styleFrom(
-          side: BorderSide(color: Colors.white, width: 4)
+          side: BorderSide(color: Colors.black, width: 2)
         ),
       ),
-      Text(widget.label ?? '',textAlign: TextAlign.center,style: TextStyle(fontSize: 12,fontFamily: "Tittilium"))
+      Text(widget.label ?? '',textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,fontFamily: "Tittilium"))
       ])
     )
     );
