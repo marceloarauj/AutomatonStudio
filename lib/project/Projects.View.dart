@@ -36,7 +36,12 @@ class _ProjectsViewState extends State<ProjectsView> {
                 Colors.indigo.shade600
               ])),
           child: Column(children: [
-            Alert(show:_rules.showAlert, text: _rules.text,type: AlertType.Info,alertCallback: _rules.alertTimer(this)),
+            Alert(show:_rules.showAlert
+                  ,text: _rules.text
+                  ,type: AlertType.Info
+                  ,alertCallback: _rules.alertTimer(this)
+                  ,width: MediaQuery.of(context).size.width
+                  ,height: MediaQuery.of(context).size.height),
             Padding(
                 padding: EdgeInsets.only(top: fivePercent()),
                 child: Row(children: [

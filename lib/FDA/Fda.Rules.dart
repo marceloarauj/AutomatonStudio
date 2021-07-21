@@ -10,6 +10,7 @@ class FdaRules{
   double screenX = 0.0;
   double screenY = 0.0;
   int lastID = 0;
+  AutomatonState? stateFocus;
 
   //Funções do menu lateral
   Function setCursorTool(State state){return () => state.setState(() {
@@ -31,6 +32,7 @@ class FdaRules{
 
     switch (selectedTool) {
       case ToolOption.Cursor:
+        makeTransition(x,y);
         break;
       case ToolOption.State:
         newState(x,y);
@@ -63,15 +65,14 @@ class FdaRules{
     state.ID = lastID;
 
     stateList.add(state);
+  }
 
-    //teste
-    if(stateList.length >= 2){
-      AutomatonState from = stateList[stateList.length - 2];
-      AutomatonState to = stateList[stateList.length - 1];
-
-      Transition transition = Transition(from.posX,from.posY,to.posX,to.posY,from.ID,to.ID);
-      transition.chars = ["t","e","s","t","e"];
-      transitionList.add(transition);
+  void makeTransition(double x, double y) {
+    if(stateFocus == null){
+      stateFocus = collidesState(x, y);
+      
+    }else{
+      stateFocus = null;
     }
   }
 
@@ -83,6 +84,16 @@ class FdaRules{
 
     }
     return false;
+  }
+
+  AutomatonState? collidesState(double x,double y){
+    for (var item in stateList) {
+
+      if((item.posX <=  x && x <= item.posX + 50) && (item.posY <= y && y <= item.posY + 50))
+        return item;
+
+    }
+    return null;
   }
 
   bool canExecute(){
@@ -111,7 +122,6 @@ class FdaRules{
 
   bool recursiveTransition(String entrance,AutomatonState actualState){
       String actualChar = entrance[0];
-      print(actualChar); print(actualState.ID);
       entrance = entrance.substring(1);
       bool transitioned = false;
       List<Transition> transitions = transitionList.where((element) => element.fromID == actualState.ID).toList();
@@ -133,6 +143,8 @@ class FdaRules{
       return transitioned && entrance.length > 0 ? 
                 recursiveTransition(entrance, actualState) : (entrance.length == 0 && actualState.finalState);
   }
+
+  
 }
 
 enum ToolOption{

@@ -8,6 +8,7 @@ class AutomatonState {
   double posX = 0.0;
   double posY = 0.0;
   int ID = 0;
+  bool focused = false;
 
   makeInitial(){
     this.initialState = true;
@@ -21,5 +22,8 @@ class AutomatonState {
     initialState = false;
     finalState = false;
     stateImage = Image.asset("assets/normal_state.png");
+  }
+  alterFocus(bool focus){
+    focused = focus;
   }
 }

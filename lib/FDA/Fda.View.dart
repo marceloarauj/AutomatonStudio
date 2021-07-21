@@ -3,10 +3,8 @@ import 'package:estudio_automato/FDA/Fda.Rules.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
-import 'package:estudio_automato/components/Transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 class FdaView extends StatefulWidget {
   const FdaView({ Key? key }) : super(key: key);
 
