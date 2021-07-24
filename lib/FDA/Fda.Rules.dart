@@ -32,6 +32,9 @@ class FdaRules{
 
     switch (selectedTool) {
       case ToolOption.Cursor:
+        selectCursor(x,y);
+        break;
+      case ToolOption.Transition:
         makeTransition(x,y);
         break;
       case ToolOption.State:
@@ -73,6 +76,14 @@ class FdaRules{
       
     }else{
       stateFocus = null;
+    }
+  }
+
+  void selectCursor(double x, double y){
+    stateFocus = collidesState(x, y);
+
+    if(stateFocus != null){
+      stateFocus!.alterFocus(!stateFocus!.focused);
     }
   }
 

@@ -23,7 +23,15 @@ class AutomatonState {
     finalState = false;
     stateImage = Image.asset("assets/normal_state.png");
   }
+
   alterFocus(bool focus){
     focused = focus;
+
+    if(!focused && !initialState && !finalState){
+      stateImage = Image.asset("assets/normal_state.png");
+    }else if(focused && !initialState && !finalState){
+      stateImage = Image.asset("assets/normal_state_focused.png") ;
+    }
+
   }
 }
