@@ -73,14 +73,28 @@ class FdaRules{
   void makeTransition(double x, double y) {
     if(stateFocus == null){
       stateFocus = collidesState(x, y);
-      
+      stateFocus!.alterFocus(true);
+
     }else{
-      stateFocus = null;
+      AutomatonState? nextState = collidesState(x, y);
+      if(nextState != null){
+        
+        Transition transition = Transition(stateFocus!.posX
+                                           ,stateFocus!.posY
+                                           ,nextState.posX
+                                           ,nextState.posY
+                                           ,stateFocus!.ID
+                                           ,nextState.ID);
+        
+        transitionList.add(transition);
+        stateFocus!.alterFocus(false);
+        stateFocus = null;
+      }
     }
   }
 
   void selectCursor(double x, double y){
-    stateFocus = collidesState(x - screenX, y - screenY);
+    stateFocus = collidesState(x,y);
   
     if(stateFocus != null){
       for(AutomatonState state in stateList){
@@ -103,6 +117,8 @@ class FdaRules{
   }
 
   AutomatonState? collidesState(double x,double y){
+    x = x - screenX;
+    y = y - screenY;
     for (var item in stateList) {
 
       if((item.posX <=  x && x <= item.posX + 50) && (item.posY <= y && y <= item.posY + 50))

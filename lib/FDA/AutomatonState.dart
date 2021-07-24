@@ -29,9 +29,21 @@ class AutomatonState {
 
     if(!focused && !initialState && !finalState){
       stateImage = Image.asset("assets/normal_state.png");
-    }else if(focused && !initialState && !finalState){
+    }
+    else if(focused && !initialState && !finalState){
       stateImage = Image.asset("assets/normal_state_focused.png") ;
     }
-
+    else if(!focused && initialState && !finalState){
+      stateImage = Image.asset("assets/initial_state.png");
+    }
+    else if(focused && initialState && !finalState){
+      stateImage = Image.asset("assets/initial_state_focused.png");
+    }
+    else if(!focused && !initialState && finalState){
+      stateImage = Image.asset("assets/final_state.png");
+    }
+    else if(focused && !initialState && finalState){
+      stateImage = Image.asset("assets/final_state_focused.png");
+    }
   }
 }
