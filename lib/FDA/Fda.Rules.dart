@@ -80,10 +80,15 @@ class FdaRules{
   }
 
   void selectCursor(double x, double y){
-    stateFocus = collidesState(x, y);
-
+    stateFocus = collidesState(x - screenX, y - screenY);
+  
     if(stateFocus != null){
-      stateFocus!.alterFocus(!stateFocus!.focused);
+      for(AutomatonState state in stateList){
+        if(state.ID != stateFocus!.ID){
+          state.alterFocus(false);
+        }
+      }
+      stateFocus!.alterFocus(true);
     }
   }
 
