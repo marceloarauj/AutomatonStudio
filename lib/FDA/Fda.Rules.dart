@@ -95,7 +95,7 @@ class FdaRules{
 
   void selectCursor(double x, double y){
     stateFocus = collidesState(x,y);
-  
+
     if(stateFocus != null){
       for(AutomatonState state in stateList){
         if(state.ID != stateFocus!.ID){
@@ -103,7 +103,19 @@ class FdaRules{
         }
       }
       stateFocus!.alterFocus(true);
+    }else{
+      for(AutomatonState state in stateList){
+        state.alterFocus(false);
+      }
     }
+    
+  }
+
+  AutomatonState? stateOptions(){
+    if(selectedTool == ToolOption.Cursor)
+      return stateFocus;
+
+    return null;
   }
 
   bool collides(double x,double y){

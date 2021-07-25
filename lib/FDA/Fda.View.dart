@@ -1,5 +1,6 @@
 import 'package:estudio_automato/FDA/AutomatonState.dart';
 import 'package:estudio_automato/FDA/Fda.Rules.dart';
+import 'package:estudio_automato/FDA/StateOptions.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
@@ -34,6 +35,10 @@ class _FdaViewState extends State<FdaView> {
       rules.screenY = y;
   }
 
+  updateState(){
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) { 
 
@@ -44,7 +49,7 @@ class _FdaViewState extends State<FdaView> {
           child: MapScreen(child: Map(),axis:updateAxis),
           onTapDown: (TapDownDetails details)=> {
             rules.screenClick(details),
-            setState((){})
+            updateState()
           },
         )
       ],
@@ -53,7 +58,8 @@ class _FdaViewState extends State<FdaView> {
 
   Widget Map(){
     List<Widget> children = [];
-        
+    
+    //States
     for(int x = 0; x < rules.stateList.length; x++){
       AutomatonState state = rules.stateList[x];
 
@@ -65,11 +71,15 @@ class _FdaViewState extends State<FdaView> {
       );
     }
 
+    //Transitions
     for(int x = 0; x < rules.transitionList.length; x++){
       children.add(CustomPaint(
         painter: rules.transitionList[x],
       ));
     }
+
+    //State options
+    children.add(new StateOptions(state: rules.stateOptions(), update:updateState));
 
     return Stack(children: children);
   }
