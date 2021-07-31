@@ -2,10 +2,9 @@ import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:flutter/material.dart';
 
 class Tools extends StatefulWidget {
-  const Tools({Key? key, required this.options, required this.execute}) : super(key: key);
+  const Tools({Key? key, required this.options}) : super(key: key);
 
   final List<ToolElement> options;
-  final Function execute;
 
   @override
   _ToolsState createState() => _ToolsState();
@@ -46,7 +45,7 @@ class _ToolsState extends State<Tools> {
         children: [
           Container(
             width: width * 0.10,
-            height: height * 0.1,
+            height: height * 0.12,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -68,7 +67,7 @@ class _ToolsState extends State<Tools> {
               )),
           Container(
               width: width * 0.10,
-              height: height * 0.1,
+              height: height * 0.12,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -83,22 +82,7 @@ class _ToolsState extends State<Tools> {
               )),
           Container(
               width: width * 0.10,
-              height: height * 0.1,
-                        decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: <Color>[
-                        Colors.white,
-                        Colors.indigo.shade700
-              ])),
-              child: OutlinedButton(
-                onPressed: () => {widget.execute.call()},
-                child: Icon(Icons.double_arrow, color: Colors.green.shade600),
-              )),
-          Container(
-              width: width * 0.10,
-              height: height * 0.1,
+              height: height * 0.16,
                         decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -109,7 +93,7 @@ class _ToolsState extends State<Tools> {
               ])),
               child: OutlinedButton(
                 onPressed: () => {},
-                child: Icon(Icons.stop, color: Colors.red.shade400),
+                child: Icon(Icons.double_arrow, color: Colors.green.shade600),
               ))
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:estudio_automato/FDA/AutomatonState.dart';
 import 'package:estudio_automato/FDA/Fda.Rules.dart';
 import 'package:estudio_automato/FDA/StateOptions.dart';
+import 'package:estudio_automato/components/ExecutionModal.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
@@ -44,7 +45,7 @@ class _FdaViewState extends State<FdaView> {
 
     return Container(child: Row(
       children: [
-        Tools(options:fdaTools(rules),execute: rules.execute("testes")),
+        Tools(options:fdaTools(rules)),
         GestureDetector(
           child: MapScreen(child: Map(),axis:updateAxis),
           onTapDown: (TapDownDetails details)=> {
@@ -80,6 +81,17 @@ class _FdaViewState extends State<FdaView> {
 
     //State options
     children.add(new StateOptions(state: rules.stateOptions(), update:updateState));
+
+    //Execution Container
+    children.add(
+      Transform(
+        transform: Matrix4.translationValues(200 + rules.screenX, 200 + rules.screenY, 0),
+        child: ExecutionModal(
+          executeFunction: rules.execute,
+          screenWidth: MediaQuery.of(context).size.width * 0.9, 
+          screenHeight: MediaQuery.of(context).size.height)
+        )
+    );
 
     return Stack(children: children);
   }
