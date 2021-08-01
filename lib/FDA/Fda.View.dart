@@ -42,7 +42,8 @@ class _FdaViewState extends State<FdaView> {
 
   @override
   Widget build(BuildContext context) { 
-
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    
     return Container(child: Row(
       children: [
         Tools(options:fdaTools(rules)),

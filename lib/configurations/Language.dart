@@ -16,6 +16,9 @@ class Language {
   static String fnda  = "New N.F.D.A";
   static String stackFda = "New Stack Automaton";
   static String grammar = "New Grammar";
+  static String success = "Success";
+  static String rejected = "Rejected";
+  static String waiting = "Waiting";
 
   //alerts
   static String alertGrammar = "Grammar unavaible";
@@ -42,6 +45,9 @@ class Language {
         alertGrammar = "Gramática indisponível";
         alertStackAutomaton = "Autômato com pilha indisponível";
         initial = "inicial";
+        success = "Sucesso";
+        rejected = "Rejeitado";
+        waiting = "Esperando";
 
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
@@ -61,6 +67,9 @@ class Language {
         alertGrammar = "Grammar unavaible";
         alertStackAutomaton = "Stack Automaton unavaible";
         initial = "initial";
+        success = "Success";
+        rejected = "Rejected";
+        waiting = "Waiting";
 
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;

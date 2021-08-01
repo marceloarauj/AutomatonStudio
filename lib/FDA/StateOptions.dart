@@ -31,14 +31,14 @@ class _StateOptionsState extends State<StateOptions> {
                                     widget.state!.initialState = value == null ?  widget.state!.initialState : value ;
                                     widget.update();
                                 }),
-                                Text(Language.initial),
+                                Text(Language.initial, style: TextStyle(fontFamily: "Tittilium")),
                               ]),
                               Column(children: [
                                 Checkbox(value: widget.state!.finalState, onChanged: (value){
                                     widget.state!.finalState = value == null ?  widget.state!.finalState : value ;
                                     widget.update();
                                 }),
-                                Text("final"),
+                                Text("final", style: TextStyle(fontFamily: "Tittilium")),
                               ])
                             ]
                           ))
