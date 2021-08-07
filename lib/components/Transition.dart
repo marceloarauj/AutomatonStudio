@@ -10,6 +10,7 @@ class Transition extends CustomPainter{
   List<String> chars = [];
   int fromID;
   int toID;
+  bool focused = false;
 
   Transition(this.fromX, this.fromY,this.toX,this.toY,this.fromID,this.toID){
 
@@ -63,6 +64,16 @@ class Transition extends CustomPainter{
     }
   }
 
+  Path arrowPath = new Path();
+
+  Color getArrowColor(){
+    return focused ? Colors.yellow.shade300: Colors.indigo.shade300 ;
+  }
+
+  void alterFocus(bool focus){
+    focused = focus;
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
 
@@ -70,20 +81,25 @@ class Transition extends CustomPainter{
     paint.style = PaintingStyle.stroke;
     paint.strokeCap = StrokeCap.round;
     paint.strokeJoin = StrokeJoin.round;
-    paint.strokeWidth = 3.0;
+    paint.strokeWidth = 7.0;
 
     double x2 = 10; // onde em X a seta vai fazer a curva para chegar no destino
     double y2 = 10; // onde em Y a seta vai fazer a curva para chegar no destino
 
-    Path arrowPath = Path();
+    arrowPath = Path();
     arrowPath.moveTo(fromX, fromY);
     arrowPath.relativeCubicTo(0, 0, x2, y2, toX, toY);
     arrowPath = ArrowPath.make(path: arrowPath);
-    canvas.drawPath(arrowPath, paint..color = Colors.indigo.shade300);
+    canvas.drawPath(arrowPath, paint..color = getArrowColor());
   }
 
 
   @override
   bool shouldRepaint(Transition oldDelegate) => true;
 
+  @override
+  bool hitTest(Offset points){
+    
+    return arrowPath.contains(points);
+  }
 }

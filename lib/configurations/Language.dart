@@ -47,7 +47,7 @@ class Language {
         initial = "inicial";
         success = "Sucesso";
         rejected = "Rejeitado";
-        waiting = "Esperando";
+        waiting = "Aguardando";
 
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;

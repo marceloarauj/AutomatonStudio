@@ -20,6 +20,7 @@ class _ExecutionModalState extends State<ExecutionModal> {
   TextEditingController valueController = TextEditingController();
   Icon icon = Icon(Icons.gesture);
   String status = Language.waiting;
+  bool visible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class _ExecutionModalState extends State<ExecutionModal> {
     double width = widget.screenWidth * 0.60;
     double height = widget.screenHeight * 0.30;
 
-    return Container(
+    return visible? Container(
       width: width,
       height:height,
         decoration: BoxDecoration(
@@ -80,13 +81,14 @@ class _ExecutionModalState extends State<ExecutionModal> {
           ) 
         ]
       ),
-      );
+      ):Container();
   }
 
   void _executeMethod(String value){
-
-    bool accept = widget.executeFunction.call(value);
-
+    
+    Function acceptFunction = widget.executeFunction.call(value);
+    bool accept = acceptFunction.call();
+    
     if(accept)
     {
       icon = Icon(Icons.check_circle,color: Colors.green.shade600);

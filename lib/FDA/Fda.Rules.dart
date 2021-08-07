@@ -11,6 +11,7 @@ class FdaRules{
   double screenY = 0.0;
   int lastID = 0;
   AutomatonState? stateFocus;
+  Transition? transitionFocus;
 
   //Funções do menu lateral
   Function setCursorTool(State state){return () => state.setState(() {
@@ -78,14 +79,14 @@ class FdaRules{
     }else{
       AutomatonState? nextState = collidesState(x, y);
       if(nextState != null){
-        
+
         Transition transition = Transition(stateFocus!.posX
                                            ,stateFocus!.posY
                                            ,nextState.posX
                                            ,nextState.posY
                                            ,stateFocus!.ID
-                                           ,nextState.ID);
-        
+                                           ,nextState.ID);        
+
         transitionList.add(transition);
         stateFocus!.alterFocus(false);
         stateFocus = null;
@@ -102,13 +103,30 @@ class FdaRules{
           state.alterFocus(false);
         }
       }
+      
+      if(transitionFocus != null){
+        transitionFocus!.alterFocus(false);
+        transitionFocus = null;
+      }
+
       stateFocus!.alterFocus(true);
+
     }else{
       for(AutomatonState state in stateList){
         state.alterFocus(false);
       }
+      if(transitionFocus != null){
+        transitionFocus!.alterFocus(false);
+        transitionFocus = null;
+      }
     }
     
+    transitionFocus = collidesTransition(x, y);
+    print("A");
+    if(transitionFocus != null){
+      transitionFocus!.alterFocus(true);
+    }
+
   }
 
   AutomatonState? stateOptions(){
@@ -140,13 +158,27 @@ class FdaRules{
     return null;
   }
 
+  Transition? collidesTransition(double x, double y){
+    x = x - screenX;
+    y = y - screenY;
+
+    for(var transition in transitionList){
+
+      if(transition.hitTest(Offset(x, y)))
+        return transition;
+
+    }
+
+    return null;
+  }
+
   bool canExecute(){
     return false;
   }
 
   Function execute(String entrance){
-    return (){
-
+    return () {
+      
       if(stateList.isEmpty)
         return false;
 
@@ -185,7 +217,7 @@ class FdaRules{
           break;
       }
       return transitioned && entrance.length > 0 ? 
-                recursiveTransition(entrance, actualState) : (entrance.length == 0 && actualState.finalState);
+                recursiveTransition(entrance, actualState) : (transitioned && entrance.length == 0 && actualState.finalState);
   }
 
   
