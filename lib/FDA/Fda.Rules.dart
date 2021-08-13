@@ -122,8 +122,8 @@ class FdaRules{
     }
     
     transitionFocus = collidesTransition(x, y);
-    print("A");
-    if(transitionFocus != null){
+    
+    if(transitionFocus != null){print("aaaaaa");
       transitionFocus!.alterFocus(true);
     }
 
@@ -174,6 +174,12 @@ class FdaRules{
 
   bool canExecute(){
     return false;
+  }
+
+  delete(){
+    transitionList.removeWhere((element) => (element.fromID == stateFocus!.ID || element.toID == stateFocus!.ID));
+    stateList.removeWhere((element) => element.ID == stateFocus!.ID);
+    stateFocus = null;
   }
 
   Function execute(String entrance){

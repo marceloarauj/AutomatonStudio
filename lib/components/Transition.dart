@@ -99,7 +99,7 @@ class Transition extends CustomPainter{
 
   @override
   bool hitTest(Offset points){
-    
-    return arrowPath.contains(points);
+
+    return arrowPath.contains(points); 
   }
 }

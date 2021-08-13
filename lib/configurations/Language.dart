@@ -25,7 +25,8 @@ class Language {
   static String alertStackAutomaton = "Stack Automaton unavaible";
 
   // StateOptions
-  static String initial = "initial";
+  static String initial = "Initial";
+  static String delete = "Delete";
 
   static void changeLanguage(LanguageEnum language){
     
@@ -44,10 +45,11 @@ class Language {
         grammar = "Nova Gramática";
         alertGrammar = "Gramática indisponível";
         alertStackAutomaton = "Autômato com pilha indisponível";
-        initial = "inicial";
+        initial = "Inicial";
         success = "Sucesso";
         rejected = "Rejeitado";
         waiting = "Aguardando";
+        delete = "Excluir";
 
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
@@ -66,10 +68,11 @@ class Language {
         grammar = "New Grammar";
         alertGrammar = "Grammar unavaible";
         alertStackAutomaton = "Stack Automaton unavaible";
-        initial = "initial";
+        initial = "Initial";
         success = "Success";
         rejected = "Rejected";
         waiting = "Waiting";
+        delete = "Delete";
 
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;
