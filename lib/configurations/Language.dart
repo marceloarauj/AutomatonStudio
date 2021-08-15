@@ -19,6 +19,7 @@ class Language {
   static String success = "Success";
   static String rejected = "Rejected";
   static String waiting = "Waiting";
+  static String regularExp = "New Regular Exp.";
 
   //alerts
   static String alertGrammar = "Grammar unavaible";
@@ -50,6 +51,7 @@ class Language {
         rejected = "Rejeitado";
         waiting = "Aguardando";
         delete = "Excluir";
+        regularExp = "Nova Exp. Regular";
 
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
@@ -73,6 +75,7 @@ class Language {
         rejected = "Rejected";
         waiting = "Waiting";
         delete = "Delete";
+        regularExp = "New Regular Exp.";
 
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;

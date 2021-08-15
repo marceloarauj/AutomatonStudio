@@ -35,7 +35,8 @@ class _ProjectsViewState extends State<ProjectsView> {
                 Colors.white,
                 Colors.indigo.shade600
               ])),
-          child: Column(children: [
+          child: MediaQuery.of(context).orientation != Orientation.portrait ? Container():
+          Column(children: [
             Alert(show:_rules.showAlert
                   ,text: _rules.text
                   ,type: AlertType.Info
@@ -87,6 +88,20 @@ class _ProjectsViewState extends State<ProjectsView> {
                           label: Language.grammar,
                         )
                       ])),
+                ])),
+            Padding(
+                padding: EdgeInsets.only(top: fivePercent()),
+                child: Row(children: [
+                  Padding(
+                      padding: EdgeInsets.only(left: fivePercent() * 1.5),
+                      child: MenuButton(
+                        icon: Icons.lock,
+                        fx: () =>{setState(()=>{
+                          _rules.showAlert = true,
+                          _rules.text = Language.alertStackAutomaton
+                        })},
+                        label: Language.regularExp,
+                      ))
                 ]))
           ])),
     ));

@@ -5,6 +5,7 @@ import 'package:estudio_automato/components/ExecutionModal.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
+import 'package:estudio_automato/components/Transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 class FdaView extends StatefulWidget {
@@ -76,7 +77,7 @@ class _FdaViewState extends State<FdaView> {
     //Transitions
     for(int x = 0; x < rules.transitionList.length; x++){
       children.add(CustomPaint(
-        painter: rules.transitionList[x],
+        painter: TransitionView(transition: rules.transitionList[x]),
       ));
     }
 

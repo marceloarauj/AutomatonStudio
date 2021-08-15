@@ -1,7 +1,7 @@
 import 'package:arrow_path/arrow_path.dart';
 import 'package:flutter/material.dart';
 
-class Transition extends CustomPainter{
+class Transition{
   
   double fromX;
   double fromY;
@@ -64,15 +64,40 @@ class Transition extends CustomPainter{
     }
   }
 
-  Path arrowPath = new Path();
-
-  Color getArrowColor(){
-    return focused ? Colors.yellow.shade300: Colors.indigo.shade300 ;
-  }
-
   void alterFocus(bool focus){
     focused = focus;
   }
+
+}
+
+class TransitionView extends CustomPainter{
+  
+  final Transition transition;
+  Path squarePath = new Path();
+
+  TransitionView({required this.transition}){
+
+    squarePath = Path();
+    squarePath.moveTo(transition.fromX, transition.fromY);
+    squarePath.relativeCubicTo(0, 0, 10, 10, transition.toX, transition.toY);
+    squarePath.addPolygon(_getPolygon(), true);
+
+  }
+
+  Color getArrowColor(){
+    return transition.focused ? Colors.yellow.shade300: Colors.indigo.shade300 ;
+  }
+
+  List<Offset> _getPolygon(){
+    List<Offset> points = [];
+    points.add(Offset(transition.fromX + 7, transition.fromY + 7));
+    points.add(Offset(transition.fromX - 7, transition.fromY - 7));
+    points.add(Offset(400,307));
+    points.add(Offset(407,317));
+
+    return points;
+  }
+
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -81,25 +106,27 @@ class Transition extends CustomPainter{
     paint.style = PaintingStyle.stroke;
     paint.strokeCap = StrokeCap.round;
     paint.strokeJoin = StrokeJoin.round;
-    paint.strokeWidth = 7.0;
+    paint.strokeWidth = 3.0;
 
     double x2 = 10; // onde em X a seta vai fazer a curva para chegar no destino
     double y2 = 10; // onde em Y a seta vai fazer a curva para chegar no destino
 
-    arrowPath = Path();
-    arrowPath.moveTo(fromX, fromY);
-    arrowPath.relativeCubicTo(0, 0, x2, y2, toX, toY);
+    var arrowPath = Path();
+    arrowPath.moveTo(transition.fromX, transition.fromY);
+    arrowPath.relativeCubicTo(0, 0, x2, y2, transition.toX, transition.toY);
     arrowPath = ArrowPath.make(path: arrowPath);
     canvas.drawPath(arrowPath, paint..color = getArrowColor());
+  
+    canvas.drawPath(squarePath, paint..color = Colors.red);
   }
 
-
   @override
-  bool shouldRepaint(Transition oldDelegate) => true;
+  bool shouldRepaint(TransitionView oldDelegate) => true;
 
   @override
   bool hitTest(Offset points){
-
-    return arrowPath.contains(points); 
+    
+    return squarePath.contains(points); 
   }
+
 }

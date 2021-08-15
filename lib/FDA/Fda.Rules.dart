@@ -85,7 +85,8 @@ class FdaRules{
                                            ,nextState.posX
                                            ,nextState.posY
                                            ,stateFocus!.ID
-                                           ,nextState.ID);        
+                                           ,nextState.ID
+                                           );        
 
         transitionList.add(transition);
         stateFocus!.alterFocus(false);
@@ -122,8 +123,8 @@ class FdaRules{
     }
     
     transitionFocus = collidesTransition(x, y);
-    
-    if(transitionFocus != null){print("aaaaaa");
+   
+    if(transitionFocus != null){
       transitionFocus!.alterFocus(true);
     }
 
@@ -163,8 +164,9 @@ class FdaRules{
     y = y - screenY;
 
     for(var transition in transitionList){
+      TransitionView tv = TransitionView(transition: transition);
 
-      if(transition.hitTest(Offset(x, y)))
+      if(tv.hitTest(Offset(x, y)))
         return transition;
 
     }

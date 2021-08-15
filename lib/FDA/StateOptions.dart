@@ -52,7 +52,7 @@ class _StateOptionsState extends State<StateOptions> {
                         }),
                     Text("Final",
                         style:
-                            TextStyle(fontSize: 22, fontFamily: "Tittilium")),
+                            TextStyle(fontSize: 22, fontFamily: "Tittilium"))
                   ]),
                   Row(children: [
                     Container(
@@ -63,7 +63,7 @@ class _StateOptionsState extends State<StateOptions> {
                                 Icon(Icons.delete,color: Colors.red),
                                 Text(Language.delete,
                                     style: TextStyle(color: Colors.black,
-                                        fontSize: 22, fontFamily: "Tittilium"))
+                                        fontSize: 20, fontFamily: "Tittilium"))
                               ],
                             ),
                             onPressed: ()  {
