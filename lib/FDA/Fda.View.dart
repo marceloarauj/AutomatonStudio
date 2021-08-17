@@ -1,6 +1,7 @@
 import 'package:estudio_automato/FDA/AutomatonState.dart';
 import 'package:estudio_automato/FDA/Fda.Rules.dart';
 import 'package:estudio_automato/FDA/StateOptions.dart';
+import 'package:estudio_automato/FDA/TransitionOptions.dart';
 import 'package:estudio_automato/components/ExecutionModal.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
@@ -82,7 +83,10 @@ class _FdaViewState extends State<FdaView> {
     }
 
     //State options
-    children.add(new StateOptions(state: rules.stateOptions(), update:updateState, delete: rules.delete));
+    children.add(new StateOptions(state: rules.stateOptions(), update:updateState, delete: rules.deleteState));
+
+    //Transition options
+    children.add(new TransitionOptions(transition: rules.transitionOptions(),delete: rules.deleteTransition, update: updateState));
 
     //Execution Container
     children.add(

@@ -137,6 +137,13 @@ class FdaRules{
     return null;
   }
 
+  Transition? transitionOptions(){
+    if(selectedTool == ToolOption.Cursor)
+      return transitionFocus;
+    
+    return null;
+  }
+
   bool collides(double x,double y){
     for (var item in stateList) {
 
@@ -178,10 +185,15 @@ class FdaRules{
     return false;
   }
 
-  delete(){
+  deleteState(){
     transitionList.removeWhere((element) => (element.fromID == stateFocus!.ID || element.toID == stateFocus!.ID));
     stateList.removeWhere((element) => element.ID == stateFocus!.ID);
     stateFocus = null;
+  }
+
+  deleteTransition(){
+    transitionList.removeWhere((element) => (element.fromID == transitionFocus!.fromID && element.toID == transitionFocus!.toID));
+    transitionFocus = null;
   }
 
   Function execute(String entrance){
