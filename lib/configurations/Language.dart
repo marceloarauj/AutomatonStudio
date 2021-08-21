@@ -20,14 +20,11 @@ class Language {
   static String rejected = "Rejected";
   static String waiting = "Waiting";
   static String regularExp = "New Regular Exp.";
-
-  //alerts
   static String alertGrammar = "Grammar unavaible";
   static String alertStackAutomaton = "Stack Automaton unavaible";
-
-  // StateOptions
   static String initial = "Initial";
   static String delete = "Delete";
+  static String save = "Save";
 
   static void changeLanguage(LanguageEnum language){
     
@@ -52,6 +49,7 @@ class Language {
         waiting = "Aguardando";
         delete = "Excluir";
         regularExp = "Nova Exp. Regular";
+        save = "Salvar";
 
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
@@ -76,7 +74,8 @@ class Language {
         waiting = "Waiting";
         delete = "Delete";
         regularExp = "New Regular Exp.";
-
+        save = "Save";
+        
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;
       break;

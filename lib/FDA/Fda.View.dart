@@ -23,7 +23,9 @@ class _FdaViewState extends State<FdaView> {
     super.initState();
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    rules.updateState = updateState;
   }
+
   @override
   void dispose() {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -48,7 +50,7 @@ class _FdaViewState extends State<FdaView> {
     
     return Container(child: Row(
       children: [
-        Tools(options:fdaTools(rules)),
+        Tools(executionModalVisibility: rules.changeModalExecutionVisibility ,options:fdaTools(rules)),
         GestureDetector(
           child: MapScreen(child: Map(),axis:updateAxis),
           onTapDown: (TapDownDetails details)=> {
@@ -86,13 +88,15 @@ class _FdaViewState extends State<FdaView> {
     children.add(new StateOptions(state: rules.stateOptions(), update:updateState, delete: rules.deleteState));
 
     //Transition options
-    children.add(new TransitionOptions(transition: rules.transitionOptions(),delete: rules.deleteTransition, update: updateState));
+    children.add(new TransitionOptions(transition: rules.transitionOptions(),delete: rules.deleteTransition,save:rules.saveTransition, update: updateState));
 
     //Execution Container
     children.add(
       Transform(
         transform: Matrix4.translationValues(200 + rules.screenX, 200 + rules.screenY, 0),
         child: ExecutionModal(
+          closeFunction: rules.changeModalExecutionVisibility,
+          visible: rules.executionModalVisible,
           executeFunction: rules.execute,
           screenWidth: MediaQuery.of(context).size.width * 0.9, 
           screenHeight: MediaQuery.of(context).size.height)

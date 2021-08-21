@@ -2,9 +2,10 @@ import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:flutter/material.dart';
 
 class Tools extends StatefulWidget {
-  const Tools({Key? key, required this.options}) : super(key: key);
+  const Tools({Key? key, required this.options, required this.executionModalVisibility}) : super(key: key);
 
   final List<ToolElement> options;
+  final Function executionModalVisibility;
 
   @override
   _ToolsState createState() => _ToolsState();
@@ -92,7 +93,7 @@ class _ToolsState extends State<Tools> {
                         Colors.indigo.shade700
               ])),
               child: OutlinedButton(
-                onPressed: () => {},
+                onPressed: () => widget.executionModalVisibility.call(),
                 child: Icon(Icons.double_arrow, color: Colors.green.shade600),
               ))
         ],

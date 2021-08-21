@@ -10,8 +10,10 @@ class FdaRules{
   double screenX = 0.0;
   double screenY = 0.0;
   int lastID = 0;
+  bool executionModalVisible = false;
   AutomatonState? stateFocus;
   Transition? transitionFocus;
+  Function? updateState;
 
   //Funções do menu lateral
   Function setCursorTool(State state){return () => state.setState(() {
@@ -194,6 +196,21 @@ class FdaRules{
   deleteTransition(){
     transitionList.removeWhere((element) => (element.fromID == transitionFocus!.fromID && element.toID == transitionFocus!.toID));
     transitionFocus = null;
+  }
+
+  List<String> saveTransition(String transition){
+    transition = transition.toLowerCase();
+    transition = transition.replaceAll(RegExp(r'[^\w\s]+'), '');
+    transition = transition.replaceAll(RegExp(r'[0-9]'), '');
+    List<String> chars = transition.split("");
+    chars = chars.toSet().toList();
+
+    return chars;
+  }
+
+  changeModalExecutionVisibility(){
+    this.executionModalVisible = !this.executionModalVisible;
+    this.updateState!.call();
   }
 
   Function execute(String entrance){

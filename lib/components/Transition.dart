@@ -11,9 +11,10 @@ class Transition{
   int fromID;
   int toID;
   bool focused = false;
-
+  TextEditingController transitionsText = TextEditingController();
+  
   Transition(this.fromX, this.fromY,this.toX,this.toY,this.fromID,this.toID){
-
+    
     _UpdateArrowDirection();
   }
 

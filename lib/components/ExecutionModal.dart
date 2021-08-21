@@ -2,15 +2,19 @@ import 'package:estudio_automato/configurations/Language.dart';
 import 'package:flutter/material.dart';
 
 class ExecutionModal extends StatefulWidget {
-  const ExecutionModal({ Key? key
+  ExecutionModal({ Key? key
                         ,required this.executeFunction
                         ,required this.screenWidth
-                        ,required this.screenHeight }) : super(key: key);
+                        ,required this.screenHeight 
+                        ,required this.visible 
+                        ,required this.closeFunction}) : super(key: key);
 
   final Function(String) executeFunction;
+  final Function closeFunction;
   final double screenWidth;
   final double screenHeight;
-  
+  bool visible;
+
   @override
   _ExecutionModalState createState() => _ExecutionModalState();
 }
@@ -20,7 +24,6 @@ class _ExecutionModalState extends State<ExecutionModal> {
   TextEditingController valueController = TextEditingController();
   Icon icon = Icon(Icons.gesture);
   String status = Language.waiting;
-  bool visible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class _ExecutionModalState extends State<ExecutionModal> {
     double width = widget.screenWidth * 0.60;
     double height = widget.screenHeight * 0.30;
 
-    return visible? Container(
+    return widget.visible? Container(
       width: width,
       height:height,
         decoration: BoxDecoration(
@@ -51,7 +54,7 @@ class _ExecutionModalState extends State<ExecutionModal> {
                 width: width * 0.2,
                 child: IconButton(
                   color: Colors.red.shade500,
-                  onPressed: ()=>{},
+                  onPressed: ()=> widget.closeFunction.call(),
                   icon: Icon(Icons.close_outlined)
                   )
               )
