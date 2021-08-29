@@ -2,7 +2,6 @@ import 'package:estudio_automato/components/MenuButton.dart';
 import 'package:estudio_automato/configurations/Language.dart';
 import 'package:estudio_automato/init/Init.Rules.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class InicioView extends StatefulWidget {
   InicioView({Key? key}) : super(key: key);

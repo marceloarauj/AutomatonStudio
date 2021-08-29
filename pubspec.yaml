@@ -22,9 +22,9 @@ environment:
 
 dependencies:
   arrow_path: ^2.0.0
-  shared_preferences: ^2.0.6
   country_icons: ^2.0.2
   masked_text: ^0.0.6
+  path_provider: ^2.0.2
   flutter:
     sdk: flutter
 

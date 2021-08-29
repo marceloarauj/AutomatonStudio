@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class MapScreen extends StatefulWidget {
-  MapScreen({Key? key, required this.child, required this.axis}) : super(key: key);
+  MapScreen({Key? key, required this.child, required this.axis})
+      : super(key: key);
 
   final Widget child;
   final Function axis;
@@ -14,16 +15,16 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   TransformationController _transformator = TransformationController();
   double sizeC = 100000;
-  
-  updateContainer(){
+
+  updateContainer() {
     double x = _transformator.value.getTranslation().x;
     double y = _transformator.value.getTranslation().y;
 
-    widget.axis(x,y);
+    widget.axis(x, y);
   }
 
   @override
-  void initState() {    
+  void initState() {
     _transformator.addListener(updateContainer);
     super.initState();
   }
@@ -34,18 +35,20 @@ class _MapScreenState extends State<MapScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Material(
-      child: Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade900,
-      ),
-      child: InteractiveViewer(
-        constrained: false,
-          transformationController: _transformator,
-          scaleEnabled: false,
-          child: Container(color: Colors.grey.shade900,width:sizeC , height:sizeC , child: widget.child)
-    )
-    ));
+        child: Container(
+            width: width,
+            height: height,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade900,
+            ),
+            child: InteractiveViewer(
+                constrained: false,
+                transformationController: _transformator,
+                scaleEnabled: false,
+                child: Container(
+                    color: Colors.grey.shade900,
+                    width: sizeC,
+                    height: sizeC,
+                    child: widget.child))));
   }
 }

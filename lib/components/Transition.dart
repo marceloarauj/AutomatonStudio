@@ -20,7 +20,13 @@ class Transition{
 
   void _UpdateArrowDirection(){
     //right validations
-    if(toX > fromX){
+    if(isSelfTransaction()){
+      fromY = fromY + 0;
+      fromX = fromX + 25;
+      toX = fromX;
+      toY = fromY;
+    }
+    else if(toX > fromX){
       fromX = fromX + 50;
       if(toY < fromY){
         toY = toY - fromY + 50;
@@ -69,6 +75,10 @@ class Transition{
     focused = focus;
   }
 
+  bool isSelfTransaction(){
+    return fromID == toID;
+  }
+
 }
 
 class TransitionView extends CustomPainter{
@@ -80,9 +90,7 @@ class TransitionView extends CustomPainter{
 
     squarePath = Path();
     squarePath.moveTo(transition.fromX, transition.fromY);
-    squarePath.relativeCubicTo(0, 0, 10, 10, transition.toX, transition.toY);
     squarePath.addPolygon(_getPolygon(), true);
-
   }
 
   Color getArrowColor(){
@@ -91,10 +99,10 @@ class TransitionView extends CustomPainter{
 
   List<Offset> _getPolygon(){
     List<Offset> points = [];
-    points.add(Offset(transition.fromX + 7, transition.fromY + 7));
-    points.add(Offset(transition.fromX - 7, transition.fromY - 7));
-    points.add(Offset(400,307));
-    points.add(Offset(407,317));
+    points.add(Offset(transition.fromX - 10,transition.fromY - 10));
+    points.add(Offset(transition.fromX + 10,transition.fromY + 10));
+    points.add(Offset(transition.toX + transition.fromX + 10, transition.toY+ transition.fromY + 10));
+    points.add(Offset(transition.toX + transition.fromX - 10, transition.toY+ transition.fromY - 10));
 
     return points;
   }
@@ -109,16 +117,21 @@ class TransitionView extends CustomPainter{
     paint.strokeJoin = StrokeJoin.round;
     paint.strokeWidth = 3.0;
 
-    double x2 = 10; // onde em X a seta vai fazer a curva para chegar no destino
-    double y2 = 10; // onde em Y a seta vai fazer a curva para chegar no destino
-
+    double x2 = 1; // onde em X a seta vai fazer a curva para chegar no destino
+    double y2 = 1; // onde em Y a seta vai fazer a curva para chegar no destino
     var arrowPath = Path();
     arrowPath.moveTo(transition.fromX, transition.fromY);
-    arrowPath.relativeCubicTo(0, 0, x2, y2, transition.toX, transition.toY);
+
+    if(transition.isSelfTransaction()){
+      arrowPath.relativeCubicTo(-120, -80, 120, -80, 10, -2);
+    }else{
+      arrowPath.relativeCubicTo(0, 0, x2, y2, transition.toX, transition.toY);
+    }
+
     arrowPath = ArrowPath.make(path: arrowPath);
     canvas.drawPath(arrowPath, paint..color = getArrowColor());
   
-    canvas.drawPath(squarePath, paint..color = Colors.red);
+    //canvas.drawPath(squarePath, paint..color = Colors.red);
   }
 
   @override

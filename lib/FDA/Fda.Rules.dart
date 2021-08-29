@@ -1,4 +1,5 @@
 import 'package:estudio_automato/components/Transition.dart';
+import 'package:estudio_automato/utils/SaveSystem.dart';
 import 'package:flutter/material.dart';
 
 import 'AutomatonState.dart';
@@ -209,6 +210,7 @@ class FdaRules{
   }
 
   changeModalExecutionVisibility(){
+    SaveSystem.SaveFDA("Teste", stateList, transitionList);
     this.executionModalVisible = !this.executionModalVisible;
     this.updateState!.call();
   }
