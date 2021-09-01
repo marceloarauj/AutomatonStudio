@@ -38,6 +38,7 @@ class _FdaViewState extends State<FdaView> {
   updateAxis(double x, double y){
       rules.screenX = x;
       rules.screenY = y;
+      updateState();
   }
 
   updateState(){
@@ -52,7 +53,7 @@ class _FdaViewState extends State<FdaView> {
       children: [
         Tools(executionModalVisibility: rules.changeModalExecutionVisibility ,options:fdaTools(rules)),
         GestureDetector(
-          child: MapScreen(child: Map(),axis:updateAxis),
+          child: MapScreen(child: Map(),axis:updateAxis, updateViewParent: updateState),
           onTapDown: (TapDownDetails details)=> {
             rules.screenClick(details),
             updateState()
@@ -89,11 +90,12 @@ class _FdaViewState extends State<FdaView> {
 
     //Transition options
     children.add(new TransitionOptions(transition: rules.transitionOptions(),delete: rules.deleteTransition,save:rules.saveTransition, update: updateState));
-
+    var x = 100 +  (-rules.screenX);
+    var y = 20 + (-rules.screenY);
     //Execution Container
     children.add(
       Transform(
-        transform: Matrix4.translationValues(200 + rules.screenX, 200 + rules.screenY, 0),
+        transform: Matrix4.translationValues(x,y, 0),
         child: ExecutionModal(
           closeFunction: rules.changeModalExecutionVisibility,
           visible: rules.executionModalVisible,

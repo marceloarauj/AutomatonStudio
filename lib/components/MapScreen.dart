@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class MapScreen extends StatefulWidget {
-  MapScreen({Key? key, required this.child, required this.axis})
+  MapScreen({Key? key, required this.child, required this.axis, required this.updateViewParent})
       : super(key: key);
 
   final Widget child;
   final Function axis;
+  final Function updateViewParent;
 
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -29,6 +30,18 @@ class _MapScreenState extends State<MapScreen> {
     super.initState();
   }
 
+  void interactionEnd(ScaleEndDetails details){
+    widget.updateViewParent.call();
+  }
+  
+  void interactionUpdate(ScaleUpdateDetails details){
+    widget.updateViewParent.call();
+  }
+
+  void interactionStart(ScaleStartDetails details){
+    widget.updateViewParent.call();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width * 0.9;
@@ -42,6 +55,9 @@ class _MapScreenState extends State<MapScreen> {
               color: Colors.grey.shade900,
             ),
             child: InteractiveViewer(
+                onInteractionEnd: interactionEnd,
+                onInteractionUpdate: interactionUpdate,
+                onInteractionStart: interactionStart,
                 constrained: false,
                 transformationController: _transformator,
                 scaleEnabled: false,
