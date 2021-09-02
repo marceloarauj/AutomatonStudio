@@ -210,7 +210,6 @@ class FdaRules{
   }
 
   changeModalExecutionVisibility(){
-    SaveSystem.SaveFDA("Teste", stateList, transitionList);
     this.executionModalVisible = !this.executionModalVisible;
     this.updateState!.call();
   }
