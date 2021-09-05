@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:estudio_automato/FDA/Fda.View.dart';
+import 'package:estudio_automato/components/Alert.dart';
 import 'package:estudio_automato/components/Transition.dart';
 import 'package:estudio_automato/utils/SaveSystem.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +19,12 @@ class FdaRules{
   AutomatonState? stateFocus;
   Transition? transitionFocus;
   Function? updateState;
+  Timer? timer;
+
+  // Alert variables
+  bool showAlert = false;
+  String alertText = '';
+  AlertType alertType = AlertType.Error;
 
   //Funções do menu lateral
   Function setCursorTool(State state){return () => state.setState(() {
@@ -258,7 +268,21 @@ class FdaRules{
                 recursiveTransition(entrance, actualState) : (transitioned && entrance.length == 0 && actualState.finalState);
   }
 
-  
+    Function alertTimer(State<FdaView> state){
+      return (){
+
+        if(timer != null && timer!.isActive){
+          timer!.cancel();
+        }
+
+        timer = Timer(Duration(seconds:5), (){
+          state.setState(() {
+            showAlert = false;
+          });
+        });
+        
+      };
+  }
 }
 
 enum ToolOption{

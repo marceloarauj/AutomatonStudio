@@ -2,6 +2,7 @@ import 'package:estudio_automato/FDA/AutomatonState.dart';
 import 'package:estudio_automato/FDA/Fda.Rules.dart';
 import 'package:estudio_automato/FDA/StateOptions.dart';
 import 'package:estudio_automato/FDA/TransitionOptions.dart';
+import 'package:estudio_automato/components/Alert.dart';
 import 'package:estudio_automato/components/ExecutionModal.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
@@ -68,6 +69,15 @@ class _FdaViewState extends State<FdaView> {
 
   Widget Map() {
     List<Widget> children = [];
+
+    children.add(Transform(
+        transform: Matrix4.translationValues((-rules.screenX) ,(-rules.screenY), 0),
+        child:Alert(type: rules.alertType, 
+                text: rules.alertText, 
+                show: rules.showAlert, 
+                alertCallback: rules.alertTimer(this), 
+                width: MediaQuery.of(context).size.width * 0.9, 
+                height: MediaQuery.of(context).size.height)));
 
     //States
     for (int x = 0; x < rules.stateList.length; x++) {
