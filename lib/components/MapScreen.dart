@@ -18,6 +18,7 @@ class _MapScreenState extends State<MapScreen> {
   double sizeC = 100000;
 
   updateContainer() {
+    //_transformator.value = Matrix4.identity()..translate(50000.0, 50000.0); go to center inicial
     double x = _transformator.value.getTranslation().x;
     double y = _transformator.value.getTranslation().y;
 

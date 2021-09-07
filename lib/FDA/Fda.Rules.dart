@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:estudio_automato/FDA/Fda.View.dart';
 import 'package:estudio_automato/components/Alert.dart';
 import 'package:estudio_automato/components/Transition.dart';
+import 'package:estudio_automato/configurations/Language.dart';
 import 'package:estudio_automato/utils/SaveSystem.dart';
 import 'package:flutter/material.dart';
 
@@ -220,7 +221,18 @@ class FdaRules{
   }
 
   changeModalExecutionVisibility(){
-    this.executionModalVisible = !this.executionModalVisible;
+    var existInitial = stateList.where((state) => state.initialState);
+    bool canShow = true;
+
+    if(existInitial.isEmpty){
+      configureAlert(AlertType.Error, Language.initialStateNotFound);
+      canShow = false;
+    }
+    
+    if(canShow){
+      this.executionModalVisible = !this.executionModalVisible;
+    }
+
     this.updateState!.call();
   }
 
@@ -268,20 +280,26 @@ class FdaRules{
                 recursiveTransition(entrance, actualState) : (transitioned && entrance.length == 0 && actualState.finalState);
   }
 
-    Function alertTimer(State<FdaView> state){
-      return (){
+  Function alertTimer(State<FdaView> state){
+    return (){
 
-        if(timer != null && timer!.isActive){
-          timer!.cancel();
-        }
+      if(timer != null && timer!.isActive){
+        timer!.cancel();
+      }
 
-        timer = Timer(Duration(seconds:5), (){
-          state.setState(() {
-            showAlert = false;
-          });
+      timer = Timer(Duration(seconds:5), (){
+        state.setState(() {
+          showAlert = false;
         });
-        
-      };
+      });
+      
+    };
+  }
+
+  void configureAlert(AlertType type, String text){
+    alertText = text;
+    alertType = type;
+    showAlert = true;
   }
 }
 

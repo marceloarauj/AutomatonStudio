@@ -2,13 +2,17 @@ import 'package:estudio_automato/FDA/AutomatonState.dart';
 import 'package:estudio_automato/configurations/Language.dart';
 import 'package:flutter/material.dart';
 
+import 'Fda.Rules.dart';
+
 class StateOptions extends StatefulWidget {
   StateOptions({Key? key, 
                 this.state, 
                 required this.update,
-                required this.delete}) : super(key: key);
+                required this.delete,
+                required this.rules}) : super(key: key);
 
   AutomatonState? state;
+  FdaRules rules;
   Function() update;
   Function() delete;
 
@@ -17,6 +21,28 @@ class StateOptions extends StatefulWidget {
 }
 
 class _StateOptionsState extends State<StateOptions> {
+
+  void initialCheckboxChange(bool? value){
+
+    if(value! == true){
+      var initial = widget.rules.stateList.where((state) => state.initialState);
+
+      if(!initial.isEmpty){
+
+        for (var state in widget.rules.stateList) {
+          state.initialState = false;
+        }
+
+      }
+      widget.state!.initialState = value;
+
+    }else{
+      widget.state!.initialState = value;
+    }
+
+    widget.update.call();
+  }
+
   @override
   Widget build(BuildContext context) {
     return widget.state == null
@@ -32,12 +58,7 @@ class _StateOptionsState extends State<StateOptions> {
                   Row(children: [
                     Checkbox(
                         value: widget.state!.initialState,
-                        onChanged: (value) {
-                          widget.state!.initialState = value == null
-                              ? widget.state!.initialState
-                              : value;
-                          widget.update.call();
-                        }),
+                        onChanged: (value) => initialCheckboxChange(value)),
                     Text(Language.initial,
                         style:
                             TextStyle(fontSize: 22, fontFamily: "Tittilium")),

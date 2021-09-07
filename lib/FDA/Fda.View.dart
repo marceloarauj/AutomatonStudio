@@ -99,7 +99,8 @@ class _FdaViewState extends State<FdaView> {
     children.add(new StateOptions(
         state: rules.stateOptions(),
         update: updateState,
-        delete: rules.deleteState));
+        delete: rules.deleteState,
+        rules: rules));
 
     //Transition options
     children.add(new TransitionOptions(

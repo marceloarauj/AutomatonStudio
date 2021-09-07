@@ -26,6 +26,9 @@ class Language {
   static String delete = "Delete";
   static String save = "Save";
 
+  // alerts
+  static String initialStateNotFound = "Could not find an initial state";
+
   static void changeLanguage(LanguageEnum language){
     
     switch (language){
@@ -51,6 +54,8 @@ class Language {
         regularExp = "Nova Exp. Regular";
         save = "Salvar";
 
+        initialStateNotFound = "Não foi possível encontrar um estado inicial";
+        
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
       break;
@@ -76,6 +81,8 @@ class Language {
         regularExp = "New Regular Exp.";
         save = "Save";
         
+        initialStateNotFound = "Could not find an initial state";
+
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;
       break;

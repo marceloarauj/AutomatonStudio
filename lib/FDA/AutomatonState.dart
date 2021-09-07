@@ -45,5 +45,11 @@ class AutomatonState {
     else if(focused && !initialState && finalState){
       stateImage = Image.asset("assets/final_state_focused.png");
     }
+    else if(focused && initialState && finalState){
+      stateImage = Image.asset("assets/final_initial_state_focused.png");
+    }
+    else if(!focused && initialState && finalState){
+      stateImage = Image.asset("assets/final_initial_state.png");
+    }
   }
 }
