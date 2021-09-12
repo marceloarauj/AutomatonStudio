@@ -1,6 +1,7 @@
 import 'package:estudio_automato/components/Alert.dart';
 import 'package:estudio_automato/components/MenuButton.dart';
 import 'package:estudio_automato/configurations/Language.dart';
+import 'package:estudio_automato/configurations/Themes.dart';
 import 'package:estudio_automato/project/Projects.Rules.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,15 +27,7 @@ class _ProjectsViewState extends State<ProjectsView> {
       child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: <Color>[
-                Colors.green.shade800,
-                Colors.white,
-                Colors.indigo.shade600
-              ])),
+          decoration: AutomatonThemes.getBackground(),
           child: MediaQuery.of(context).orientation != Orientation.portrait ? Container():
           Column(children: [
             Alert(show:_rules.showAlert

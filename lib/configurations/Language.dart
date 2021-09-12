@@ -25,6 +25,7 @@ class Language {
   static String initial = "Initial";
   static String delete = "Delete";
   static String save = "Save";
+  static String saveProject = "Save Project ?";
 
   // alerts
   static String initialStateNotFound = "Could not find an initial state";
@@ -53,6 +54,7 @@ class Language {
         delete = "Excluir";
         regularExp = "Nova Exp. Regular";
         save = "Salvar";
+        saveProject = "Salvar o projeto ?";
 
         initialStateNotFound = "Não foi possível encontrar um estado inicial";
         
@@ -80,6 +82,7 @@ class Language {
         delete = "Delete";
         regularExp = "New Regular Exp.";
         save = "Save";
+        saveProject = "Save Project ?";
         
         initialStateNotFound = "Could not find an initial state";
 

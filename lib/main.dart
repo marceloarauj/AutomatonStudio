@@ -1,5 +1,6 @@
  // @dart=2.9
 import 'package:estudio_automato/FDA/Fda.View.dart';
+import 'package:estudio_automato/load/load.view.dart';
 import 'package:estudio_automato/project/Projects.View.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/":          (context) => InicioView(),
         "/projects":  (context) => ProjectsView(),
+        "/load":      (context) => LoadView(),
         "/fda":       (context) => FdaView()
       },
     );

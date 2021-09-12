@@ -1,5 +1,6 @@
 import 'package:estudio_automato/components/MenuButton.dart';
 import 'package:estudio_automato/configurations/Language.dart';
+import 'package:estudio_automato/configurations/Themes.dart';
 import 'package:estudio_automato/init/Init.Rules.dart';
 import 'package:flutter/material.dart';
 
@@ -42,15 +43,7 @@ class _InicioView extends State<InicioView> {
             child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: <Color>[
-                Colors.green.shade800,
-                Colors.white,
-                Colors.indigo.shade600
-              ])),
+          decoration: AutomatonThemes.getBackground(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -72,12 +65,15 @@ class _InicioView extends State<InicioView> {
                         padding: EdgeInsets.only(left: fivePercent() * 1.5),
                         child: MenuButton(
                           icon: Icons.app_registration,
-                          fx: _rules.NewProject(context,),
+                          fx: _rules.NewProject(context),
                           label: Language.newProject,
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: fivePercent()),
-                        child: MenuButton(icon: Icons.folder_open_outlined,label: Language.loadProject)),
+                        child: MenuButton(
+                          icon: Icons.folder_open_outlined,
+                          fx: _rules.OpenProject(context),
+                          label: Language.loadProject)),
                   ])),
               Padding(
                   padding: EdgeInsets.only(

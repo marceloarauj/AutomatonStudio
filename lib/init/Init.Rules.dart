@@ -8,8 +8,8 @@ class InitRules{
     return () => Navigator.pushNamed(context, '/projects');
   } 
   
-  void OpenProject(){
-
+  Function OpenProject(BuildContext context){
+    return () => Navigator.pushNamed(context, '/load');
   }
 
   void OpenGuide(){

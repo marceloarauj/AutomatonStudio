@@ -27,6 +27,10 @@ class FdaRules{
   String alertText = '';
   AlertType alertType = AlertType.Error;
 
+  // Save/load variables
+  String filename = "";
+  bool showSave = true;
+
   //Funções do menu lateral
   Function setCursorTool(State state){return () => state.setState(() {
     selectedTool = ToolOption.Cursor;

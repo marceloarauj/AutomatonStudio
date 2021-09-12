@@ -3,11 +3,12 @@ import 'package:estudio_automato/FDA/Fda.Rules.dart';
 import 'package:estudio_automato/FDA/StateOptions.dart';
 import 'package:estudio_automato/FDA/TransitionOptions.dart';
 import 'package:estudio_automato/components/Alert.dart';
-import 'package:estudio_automato/components/ExecutionModal.dart';
+import 'package:estudio_automato/modals/ExecutionModal.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
 import 'package:estudio_automato/components/Tools.dart';
 import 'package:estudio_automato/components/Transition.dart';
+import 'package:estudio_automato/modals/SaveModal.dart';
 import 'package:estudio_automato/utils/SaveSystem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -109,7 +110,7 @@ class _FdaViewState extends State<FdaView> {
         save: rules.saveTransition,
         update: updateState));
 
-    //Execution Container
+    //Execution Modal
     children.add(Transform(
         transform: Matrix4.translationValues(
             100 + (-rules.screenX), 20 + (-rules.screenY), 0),
@@ -120,9 +121,20 @@ class _FdaViewState extends State<FdaView> {
             screenWidth: MediaQuery.of(context).size.width * 0.9,
             screenHeight: MediaQuery.of(context).size.height)));
 
+    //Save Modal
+    children.add(
+        Transform(
+                transform: Matrix4.translationValues(
+                    100 + (-rules.screenX), 20 + (-rules.screenY), 0),
+                child: SaveModal(screenWidth: MediaQuery.of(context).size.width * 0.9, 
+                                 screenHeight: MediaQuery.of(context).size.height, 
+                                 visible: rules.showSave, 
+                                 filename: rules.filename))
+    );
+
+    //Save widget configurations
     var positionSaveWidth = (MediaQuery.of(context).size.width * 0.9) - 100;
     var positionSaveHeight = MediaQuery.of(context).size.height - 80;
-
     children.add(Transform(
         transform: Matrix4.translationValues(positionSaveWidth + (-rules.screenX) , positionSaveHeight + (-rules.screenY), 0),
         child: RawMaterialButton(
