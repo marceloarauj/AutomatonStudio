@@ -129,7 +129,9 @@ class _FdaViewState extends State<FdaView> {
                 child: SaveModal(screenWidth: MediaQuery.of(context).size.width * 0.9, 
                                  screenHeight: MediaQuery.of(context).size.height, 
                                  visible: rules.showSave, 
-                                 filename: rules.filename))
+                                 filename: rules.filename,
+                                 close: rules.changeModalExecutionVisibility,
+                                 save: rules.changeModalExecutionVisibility))
     );
 
     //Save widget configurations

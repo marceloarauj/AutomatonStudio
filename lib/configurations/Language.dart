@@ -26,6 +26,8 @@ class Language {
   static String delete = "Delete";
   static String save = "Save";
   static String saveProject = "Save Project ?";
+  static String close = "Close";
+  static String filename= "Filename";
 
   // alerts
   static String initialStateNotFound = "Could not find an initial state";
@@ -55,6 +57,8 @@ class Language {
         regularExp = "Nova Exp. Regular";
         save = "Salvar";
         saveProject = "Salvar o projeto ?";
+        close = "Fechar";
+        filename= "Nome do arquivo";
 
         initialStateNotFound = "Não foi possível encontrar um estado inicial";
         
@@ -83,9 +87,10 @@ class Language {
         regularExp = "New Regular Exp.";
         save = "Save";
         saveProject = "Save Project ?";
-        
+        close = "Close";
         initialStateNotFound = "Could not find an initial state";
-
+        filename= "Filename";
+        
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;
       break;
