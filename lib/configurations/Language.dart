@@ -28,6 +28,8 @@ class Language {
   static String saveProject = "Save Project ?";
   static String close = "Close";
   static String filename= "Filename";
+  static String savedProject = "Project saved successfully";
+  static String mandoryFilename = "Filename is mandatory";
 
   // alerts
   static String initialStateNotFound = "Could not find an initial state";
@@ -59,7 +61,10 @@ class Language {
         saveProject = "Salvar o projeto ?";
         close = "Fechar";
         filename= "Nome do arquivo";
-
+        
+        //alertTexts pt-br
+        mandoryFilename = filename + " Obrigatório"; 
+        savedProject = "Projeto salvo com sucesso";
         initialStateNotFound = "Não foi possível encontrar um estado inicial";
         
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
@@ -88,9 +93,13 @@ class Language {
         save = "Save";
         saveProject = "Save Project ?";
         close = "Close";
-        initialStateNotFound = "Could not find an initial state";
         filename= "Filename";
-        
+
+        //alert Texts
+        mandoryFilename = "Filename is mandatory";
+        initialStateNotFound = "Could not find an initial state";
+        savedProject = "Project saved successfully";
+
         selectedIcon =  Image.asset('icons/flags/png/gb.png', package: 'country_icons');
         selected = LanguageEnum.English;
       break;

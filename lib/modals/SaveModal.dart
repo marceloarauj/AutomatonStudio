@@ -10,7 +10,8 @@ class SaveModal extends StatefulWidget {
       required this.visible,
       required this.filename,
       required this.close,
-      required this.save})
+      required this.save,
+      required this.changeFilename})
       : super(key: key);
 
   final double screenWidth;
@@ -19,6 +20,7 @@ class SaveModal extends StatefulWidget {
   String filename;
   Function close;
   Function save;
+  Function changeFilename;
 
   @override
   _SaveModalState createState() => _SaveModalState();
@@ -26,6 +28,18 @@ class SaveModal extends StatefulWidget {
 
 class _SaveModalState extends State<SaveModal> {
   TextEditingController valueController = TextEditingController();
+
+    @override
+  void initState() {
+    valueController.text = widget.filename;
+
+    valueController.addListener((){
+      widget.filename = valueController.text;
+      widget.changeFilename.call(widget.filename);
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

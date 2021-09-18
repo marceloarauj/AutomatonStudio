@@ -130,8 +130,9 @@ class _FdaViewState extends State<FdaView> {
                                  screenHeight: MediaQuery.of(context).size.height, 
                                  visible: rules.showSave, 
                                  filename: rules.filename,
-                                 close: rules.changeModalExecutionVisibility,
-                                 save: rules.changeModalExecutionVisibility))
+                                 changeFilename: rules.changeFilename,
+                                 close: rules.closeModalSave,
+                                 save: rules.saveProject))
     );
 
     //Save widget configurations
@@ -140,7 +141,7 @@ class _FdaViewState extends State<FdaView> {
     children.add(Transform(
         transform: Matrix4.translationValues(positionSaveWidth + (-rules.screenX) , positionSaveHeight + (-rules.screenY), 0),
         child: RawMaterialButton(
-          onPressed: ()=> SaveSystem.SaveFDA("teste", rules.stateList, rules.transitionList),
+          onPressed: ()=> {rules.showSave = true, updateState()},
           elevation: 2.0,
           fillColor: Colors.grey.shade200,
           child: Icon(

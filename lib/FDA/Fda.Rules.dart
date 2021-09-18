@@ -29,7 +29,7 @@ class FdaRules{
 
   // Save/load variables
   String filename = "";
-  bool showSave = true;
+  bool showSave = false;
 
   //Funções do menu lateral
   Function setCursorTool(State state){return () => state.setState(() {
@@ -239,6 +239,29 @@ class FdaRules{
 
     this.updateState!.call();
   }
+
+  closeModalSave(){
+    this.showSave = false;
+    this.updateState!.call();
+  }
+
+  changeFilename(String filename){
+    this.filename = filename;
+  }
+
+  saveProject(){
+    this.showSave = false;
+
+    if(filename.isEmpty){
+      this.configureAlert(AlertType.Error, Language.mandoryFilename);
+      this.closeModalSave();
+      return;
+    }
+
+    SaveSystem.SaveFDA(filename, stateList, transitionList);
+    this.configureAlert(AlertType.Success, Language.savedProject);
+    this.updateState!.call();
+  }  
 
   Function execute(String entrance){
     return () {
