@@ -17,19 +17,45 @@ class _LoadViewState extends State<LoadView> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       decoration: AutomatonThemes.getBackground(),
-      child: FutureBuilder(future:SaveSystem.load("teste"),
+      child: FutureBuilder(future:SaveSystem.getFiles(),
                            builder: (context, snapshot){
                              if(snapshot.hasData){
-                              //  List<String>? file = snapshot.data as List<String>?;
+                               List<String>? files = snapshot.data as List<String>?;
 
-                              //  if(file!.isEmpty){
-                              //    return Container();
-                              //  }
-                              //  return Text(file[0]);
-                               return Text(snapshot.data as String);
+                               if(files!.isEmpty){
+                                 return Container();
+                               }
+                               return SingleChildScrollView(
+                                 child: Column(
+                                 children: getCards(files)
+                                )
+                               );
                              }
                              return Container();
                            }),
     ));
+  }
+
+  List<Widget> getCards(List<String> files){
+    List<Widget> cards = [];
+
+    files.forEach((element) => cards.add(ProjectCard(element)));
+
+    return cards;
+  }
+
+  Widget ProjectCard(String title) {
+    double width = MediaQuery.of(context).size.width * 0.8;
+    double height = 100;
+
+    return Container(
+      width: width,
+      height: height,
+      child: Card(
+        elevation: 5,
+        shadowColor: Colors.grey.shade300,
+        child: Text(title),
+      ),
+    );
   }
 }

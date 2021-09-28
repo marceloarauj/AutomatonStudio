@@ -10,7 +10,7 @@ class Language {
   static String loadProject = "Open Project";
   static String help = "Guide";
   static String exit = "Exit";
-  static String title = "Automaton Studio";
+  static String title = "Automaton Studio v1.0";
   static String start = "Welcome !";
   static String fda   = "New D.F.A";
   static String fnda  = "New N.F.D.A";
@@ -30,7 +30,7 @@ class Language {
   static String filename= "Filename";
   static String savedProject = "Project saved successfully";
   static String mandoryFilename = "Filename is mandatory";
-
+  static String alertfnda = "non-deterministic automaton unavaible";
   // alerts
   static String initialStateNotFound = "Could not find an initial state";
 
@@ -39,7 +39,7 @@ class Language {
     switch (language){
 
       case LanguageEnum.Portuguese:
-        title = "Estúdio Autômato";
+        title = "Estúdio Autômato v1.0";
         start = "Bem vindo !";
         newProject = "Novo Projeto";
         loadProject = "Abrir Projeto";
@@ -51,6 +51,7 @@ class Language {
         grammar = "Nova Gramática";
         alertGrammar = "Gramática indisponível";
         alertStackAutomaton = "Autômato com pilha indisponível";
+        alertfnda = "Autômato não d. indisponível";
         initial = "Inicial";
         success = "Sucesso";
         rejected = "Rejeitado";
@@ -72,7 +73,7 @@ class Language {
       break;
       
       case LanguageEnum.English:
-        title = "Automaton Studio";
+        title = "Automaton Studio v1.0";
         start = "Welcome !";
         newProject = "New Project";
         loadProject = "Open Project";
@@ -84,6 +85,7 @@ class Language {
         grammar = "New Grammar";
         alertGrammar = "Grammar unavaible";
         alertStackAutomaton = "Stack Automaton unavaible";
+        alertfnda = "non-deterministic automaton unavaible";
         initial = "Initial";
         success = "Success";
         rejected = "Rejected";

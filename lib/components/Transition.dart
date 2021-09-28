@@ -25,8 +25,10 @@ class Transition{
       fromX = fromX + 25;
       toX = fromX;
       toY = fromY;
+      return;
     }
-    else if(toX > fromX){
+
+    if(toX > fromX){
       fromX = fromX + 50;
       if(toY < fromY){
         toY = toY - fromY + 50;

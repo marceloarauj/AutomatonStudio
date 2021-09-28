@@ -44,15 +44,18 @@ class _ProjectsViewState extends State<ProjectsView> {
                       child: MenuButton(
                         icon: Icons.hdr_auto_outlined,
                         fx: _rules.newFiniteDeterministicAutomaton(context),
-                        label: Language.fnda,
+                        label: Language.fda,
                       )),
                   Padding(
                       padding: EdgeInsets.only(left: fivePercent()),
                       child: Column(children: [
                         MenuButton(
-                          icon: Icons.hdr_strong_outlined,
-                          fx: _rules.newFiniteDeterministicAutomaton(context),
-                          label: Language.fda,
+                          icon: Icons.lock,
+                          fx: () =>{setState(()=>{
+                            _rules.showAlert = true,
+                            _rules.text = Language.alertfnda
+                          })},
+                          label: Language.fnda,
                         )
                       ])),
                 ])),

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:estudio_automato/FDA/AutomatonState.dart';
 import 'package:estudio_automato/components/Transition.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:path/path.dart';
 class SaveSystem{
 
   static Future<String> getPath() async{
@@ -88,10 +88,6 @@ class SaveSystem{
     file.writeAsString(sb.toString());
   }
 
-  void SaveNFDA(){
-
-  }
-
   static Future<String> load(String filename) async{
     
     File file = await getFile(filename);
@@ -106,8 +102,10 @@ class SaveSystem{
 
     for (var file in Directory(path).listSync()){
       
-      files.add(file.toString());
+      files.add(basename(file.path));
     }
+    
     return files;
   }
+
 }
