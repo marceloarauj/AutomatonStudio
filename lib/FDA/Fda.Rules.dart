@@ -258,7 +258,7 @@ class FdaRules{
       return;
     }
 
-    SaveSystem.SaveFDA(filename, stateList, transitionList);
+    SaveSystem.Save(filename, stateList, transitionList,"FDA");
     this.configureAlert(AlertType.Success, Language.savedProject);
     this.updateState!.call();
   }  

@@ -27,16 +27,18 @@ class SaveSystem{
     
     final path = await getPath();
     
-    return File('$path/$filename.amjson');
+    return File('$path/$filename.json');
   }
 
-  static void SaveFDA(String filename, List<AutomatonState> states, List<Transition> transitions) async {
+  static void Save(String filename, List<AutomatonState> states, List<Transition> transitions, String type) async {
     
     File file = await getFile(filename);
     StringBuffer sb = StringBuffer();
     
     //states
     sb.write("{");
+    sb.write("\n\t\t\t");
+    sb.write("\"Type\":" + "\"${type}\",");
     sb.write("\n\t\t\t");
     sb.write('\"States\":[');
 
@@ -93,6 +95,12 @@ class SaveSystem{
     File file = await getFile(filename);
     
     return await file.readAsString();
+  }
+
+  static void delete(filename) async{
+    var file = await getFile(filename);
+
+    file.delete();
   }
 
   static Future<List<String>> getFiles() async{

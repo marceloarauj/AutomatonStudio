@@ -1,6 +1,7 @@
 import 'package:estudio_automato/components/MenuButton.dart';
 import 'package:estudio_automato/configurations/Language.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SaveModal extends StatefulWidget {
   SaveModal(
@@ -71,6 +72,7 @@ class _SaveModalState extends State<SaveModal> {
                           Container(
                               width: width * 0.7,
                               child: TextField(
+                                keyboardType: TextInputType.name,
                                 decoration: new InputDecoration(
                                     hintText: Language.filename),
                                 controller: valueController,
