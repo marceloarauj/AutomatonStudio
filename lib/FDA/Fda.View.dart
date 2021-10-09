@@ -3,6 +3,7 @@ import 'package:estudio_automato/FDA/Fda.Rules.dart';
 import 'package:estudio_automato/FDA/StateOptions.dart';
 import 'package:estudio_automato/FDA/TransitionOptions.dart';
 import 'package:estudio_automato/components/Alert.dart';
+import 'package:estudio_automato/load/models/FiniteDeterministicModel.dart';
 import 'package:estudio_automato/modals/ExecutionModal.dart';
 import 'package:estudio_automato/components/MapScreen.dart';
 import 'package:estudio_automato/components/ToolElement.dart';
@@ -15,7 +16,7 @@ import 'package:flutter/services.dart';
 
 class FdaView extends StatefulWidget {
   const FdaView({Key? key}) : super(key: key);
-
+  
   @override
   _FdaViewState createState() => _FdaViewState();
 }
@@ -48,8 +49,19 @@ class _FdaViewState extends State<FdaView> {
     setState(() {});
   }
 
+  bool firstCharge = true;
+
   @override
   Widget build(BuildContext context) {
+
+    FiniteDeterministicModel args = ModalRoute.of(context)!.settings.arguments as FiniteDeterministicModel;
+
+    if(args != null && firstCharge){
+      rules.openProject(args);
+      firstCharge = false;
+      updateState();
+    }
+
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
 
     return Container(

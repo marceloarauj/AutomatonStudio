@@ -116,7 +116,7 @@ class ProjectCardState extends State<ProjectCard> {
                 child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MenuButton(icon: Icons.open_in_browser, fx: ()=>{}, label: Language.loadProject),
+                  MenuButton(icon: Icons.open_in_browser, fx: ()=>rules.openProject(filenameWithoutExtension, context), label: Language.loadProject),
                   MenuButton(icon: Icons.delete, fx: ()=> rules.delete(filenameWithoutExtension), label: Language.delete)
                 ]
               )

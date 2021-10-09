@@ -45,7 +45,7 @@ class _SaveModalState extends State<SaveModal> {
   @override
   Widget build(BuildContext context) {
     double width = widget.screenWidth * 0.60;
-    double height = widget.screenHeight * 0.65;
+    double height = widget.screenHeight * 0.70;
 
     return widget.visible
         ? Container(

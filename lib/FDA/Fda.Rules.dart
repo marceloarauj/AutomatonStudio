@@ -4,6 +4,7 @@ import 'package:estudio_automato/FDA/Fda.View.dart';
 import 'package:estudio_automato/components/Alert.dart';
 import 'package:estudio_automato/components/Transition.dart';
 import 'package:estudio_automato/configurations/Language.dart';
+import 'package:estudio_automato/load/models/FiniteDeterministicModel.dart';
 import 'package:estudio_automato/utils/SaveSystem.dart';
 import 'package:flutter/material.dart';
 
@@ -327,6 +328,40 @@ class FdaRules{
     alertText = text;
     alertType = type;
     showAlert = true;
+  }
+
+  void openProject(FiniteDeterministicModel model){
+    model.States.forEach((state) {
+      var automato = AutomatonState();
+      automato.posX = state.posX;
+      automato.posY = state.posY;
+      automato.ID = state.id;
+      automato.finalState = state.finalState;
+
+      if(automato.finalState)
+        automato.makeInitial();
+
+      automato.initialState = state.initialState;
+      if(automato.initialState)
+        automato.makeFinal();
+
+      if(automato.initialState && automato.finalState)
+        automato.makeFinalInitial();
+
+      stateList.add( automato );
+    });
+
+    model.Transitions.forEach((transition) {
+      Transition t = Transition(
+        transition.fromX,
+        transition.fromY,
+        transition.toX,
+        transition.toY,
+        transition.fromID,
+        transition.toID
+      );
+      transitionList.add(t);
+    });
   }
 }
 

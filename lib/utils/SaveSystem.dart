@@ -44,11 +44,11 @@ class SaveSystem{
 
     for (int i = 0; i < states.length; i++) {
       sb.write("\n\t\t\t\t\t{");
-      sb.write("\n\t\t\t\t\t\t\t\t\tid:${states[i].ID},");
-      sb.write("\n\t\t\t\t\t\t\t\t\tinitialState:${states[i].initialState},");
-      sb.write("\n\t\t\t\t\t\t\t\t\tfinalState:${states[i].finalState},");
-      sb.write("\n\t\t\t\t\t\t\t\t\tposX:${states[i].posX},");
-      sb.write("\n\t\t\t\t\t\t\t\t\tposY:${states[i].posY}");
+      sb.write("\n\t\t\t\t\t\t\t\t\t\"id\":${states[i].ID},");
+      sb.write("\n\t\t\t\t\t\t\t\t\t\"initialState\":${states[i].initialState},");
+      sb.write("\n\t\t\t\t\t\t\t\t\t\"finalState\":${states[i].finalState},");
+      sb.write("\n\t\t\t\t\t\t\t\t\t\"posX\":${states[i].posX},");
+      sb.write("\n\t\t\t\t\t\t\t\t\t\"posY\":${states[i].posY}");
       sb.write("\n\t\t\t\t\t}");
 
       if(i != states.length - 1)
@@ -63,14 +63,14 @@ class SaveSystem{
 
     for (int i =0; i < transitions.length; i++) {
       sb.write("\n\t\t\t\t\t{");
-      sb.write("\n\t\t\t\t\t\tfromID:${transitions[i].fromID},");
-      sb.write("\n\t\t\t\t\t\ttoID:${transitions[i].toID},");
-      sb.write("\n\t\t\t\t\t\tfromX:${transitions[i].fromX},");
-      sb.write("\n\t\t\t\t\t\tfromY:${transitions[i].fromY},");
-      sb.write("\n\t\t\t\t\t\ttoX:${transitions[i].toX},");
-      sb.write("\n\t\t\t\t\t\ttoY:${transitions[i].toY},");
+      sb.write("\n\t\t\t\t\t\t\"fromID\":${transitions[i].fromID},");
+      sb.write("\n\t\t\t\t\t\t\"toID\":${transitions[i].toID},");
+      sb.write("\n\t\t\t\t\t\t\"fromX\":${transitions[i].fromX},");
+      sb.write("\n\t\t\t\t\t\t\"fromY\":${transitions[i].fromY},");
+      sb.write("\n\t\t\t\t\t\t\"toX\":${transitions[i].toX},");
+      sb.write("\n\t\t\t\t\t\t\"toY\":${transitions[i].toY},");
 
-      sb.write("\n\t\t\t\t\t\tchars:[ ");
+      sb.write("\n\t\t\t\t\t\t\"chars\":[ ");
       for(int j =0; j < transitions[i].chars.length; j++){
         sb.write(transitions[i].chars[j]);
 
