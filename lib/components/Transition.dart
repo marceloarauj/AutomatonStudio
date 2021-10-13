@@ -92,7 +92,7 @@ class TransitionView extends CustomPainter{
 
     squarePath = Path();
     squarePath.moveTo(transition.fromX, transition.fromY);
-    squarePath.addPolygon(_getPolygon(), true);
+    squarePath.addPolygon(transition.isSelfTransaction()? _getSelfTransitionPolygon() : _getPolygon(), true);
   }
 
   Color getArrowColor(){
@@ -109,6 +109,15 @@ class TransitionView extends CustomPainter{
     return points;
   }
 
+  List<Offset> _getSelfTransitionPolygon(){
+    List<Offset> points = [];
+    points.add(Offset(transition.fromX - 35,transition.fromY));
+    points.add(Offset(transition.fromX - 35,transition.fromY - 65));
+    points.add(Offset(transition.fromX + 40,transition.fromY - 65));
+    points.add(Offset(transition.fromX + 40,transition.fromY));
+
+    return points;
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -133,7 +142,7 @@ class TransitionView extends CustomPainter{
     arrowPath = ArrowPath.make(path: arrowPath);
     canvas.drawPath(arrowPath, paint..color = getArrowColor());
   
-    //canvas.drawPath(squarePath, paint..color = Colors.red);
+    canvas.drawPath(squarePath, paint..color = Colors.red);
   }
 
   @override

@@ -14,6 +14,7 @@ class Language {
   static String start = "Welcome !";
   static String fda   = "New D.F.A";
   static String fnda  = "New N.F.D.A";
+  static String turingMachine = "New Turing M.";
   static String stackFda = "New Stack Automaton";
   static String grammar = "New Grammar";
   static String success = "Success";
@@ -22,6 +23,7 @@ class Language {
   static String regularExp = "New Regular Exp.";
   static String alertGrammar = "Grammar unavaible";
   static String alertStackAutomaton = "Stack Automaton unavaible";
+  static String alertTuringMachine = "Turing Machine unavaible";
   static String initial = "Initial";
   static String delete = "Delete";
   static String save = "Save";
@@ -47,10 +49,12 @@ class Language {
         exit = "Sair";
         fda   = "Novo A.F.D";
         fnda  = "Novo A.F.N.D";
+        turingMachine = "Nova M. de Turing";
         stackFda = "Novo Autômato com pilha";
         grammar = "Nova Gramática";
         alertGrammar = "Gramática indisponível";
         alertStackAutomaton = "Autômato com pilha indisponível";
+        alertTuringMachine = "M. de Turing indisponível";
         alertfnda = "Autômato não d. indisponível";
         initial = "Inicial";
         success = "Sucesso";
@@ -81,11 +85,13 @@ class Language {
         exit = "Exit";
         fda   = "New D.F.A";
         fnda  = "New N.F.D.A";
+        turingMachine = "New Turing M.";
         stackFda = "New Stack Automaton";
         grammar = "New Grammar";
         alertGrammar = "Grammar unavaible";
         alertStackAutomaton = "Stack Automaton unavaible";
         alertfnda = "non-deterministic automaton unavaible";
+        alertTuringMachine = "Turing Machine unavaible";
         initial = "Initial";
         success = "Success";
         rejected = "Rejected";

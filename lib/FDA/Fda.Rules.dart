@@ -337,12 +337,12 @@ class FdaRules{
       automato.posY = state.posY;
       automato.ID = state.id;
       automato.finalState = state.finalState;
+      automato.initialState = state.initialState;
 
-      if(automato.finalState)
+      if(state.initialState)
         automato.makeInitial();
 
-      automato.initialState = state.initialState;
-      if(automato.initialState)
+      if(state.finalState)
         automato.makeFinal();
 
       if(automato.initialState && automato.finalState)
@@ -353,10 +353,10 @@ class FdaRules{
 
     model.Transitions.forEach((transition) {
       Transition t = Transition(
-        transition.fromX,
-        transition.fromY,
-        transition.toX,
-        transition.toY,
+        stateList.where((state) => state.ID == transition.fromID).first.posX,
+        stateList.where((state) => state.ID == transition.fromID).first.posY,
+        stateList.where((state) => state.ID == transition.toID).first.posX,
+        stateList.where((state) => state.ID == transition.toID).first.posY,
         transition.fromID,
         transition.toID
       );

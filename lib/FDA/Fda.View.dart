@@ -58,8 +58,8 @@ class _FdaViewState extends State<FdaView> {
 
     if(args != null && firstCharge){
       rules.openProject(args);
-      firstCharge = false;
-      updateState();
+      //firstCharge = false;
+      //updateState();
     }
 
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);

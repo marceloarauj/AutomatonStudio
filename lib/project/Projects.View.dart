@@ -28,78 +28,103 @@ class _ProjectsViewState extends State<ProjectsView> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: AutomatonThemes.getBackground(),
-          child: MediaQuery.of(context).orientation != Orientation.portrait ? Container():
-          Column(children: [
-            Alert(show:_rules.showAlert
-                  ,text: _rules.text
-                  ,type: AlertType.Info
-                  ,alertCallback: _rules.alertTimer(this)
-                  ,width: MediaQuery.of(context).size.width
-                  ,height: MediaQuery.of(context).size.height),
-            Padding(
-                padding: EdgeInsets.only(top: fivePercent()),
-                child: Row(children: [
+          child: MediaQuery.of(context).orientation != Orientation.portrait
+              ? Container()
+              : Column(children: [
+                  Alert(
+                      show: _rules.showAlert,
+                      text: _rules.text,
+                      type: AlertType.Info,
+                      alertCallback: _rules.alertTimer(this),
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height),
                   Padding(
-                      padding: EdgeInsets.only(left: fivePercent() * 1.5),
-                      child: MenuButton(
-                        icon: Icons.hdr_auto_outlined,
-                        fx: _rules.newFiniteDeterministicAutomaton(context),
-                        label: Language.fda,
-                      )),
-                  Padding(
-                      padding: EdgeInsets.only(left: fivePercent()),
-                      child: Column(children: [
-                        MenuButton(
-                          icon: Icons.lock,
-                          fx: () =>{setState(()=>{
-                            _rules.showAlert = true,
-                            _rules.text = Language.alertfnda
-                          })},
-                          label: Language.fnda,
-                        )
+                      padding: EdgeInsets.only(top: fivePercent()),
+                      child: Row(children: [
+                        Padding(
+                            padding: EdgeInsets.only(left: fivePercent() * 1.5),
+                            child: MenuButton(
+                              icon: Icons.hdr_auto_outlined,
+                              fx: _rules
+                                  .newFiniteDeterministicAutomaton(context),
+                              label: Language.fda,
+                            )),
+                        Padding(
+                            padding: EdgeInsets.only(left: fivePercent()),
+                            child: Column(children: [
+                              MenuButton(
+                                icon: Icons.lock,
+                                fx: () => {
+                                  setState(() => {
+                                        _rules.showAlert = true,
+                                        _rules.text = Language.alertfnda
+                                      })
+                                },
+                                label: Language.fnda,
+                              )
+                            ])),
                       ])),
-                ])),
-            Padding(
-                padding: EdgeInsets.only(top: fivePercent()),
-                child: Row(children: [
                   Padding(
-                      padding: EdgeInsets.only(left: fivePercent() * 1.5),
-                      child: MenuButton(
-                        icon: Icons.lock,
-                        fx: () =>{setState(()=>{
-                          _rules.showAlert = true,
-                          _rules.text = Language.alertStackAutomaton
-                        })},
-                        label: Language.stackFda,
-                      )),
-                  Padding(
-                      padding: EdgeInsets.only(left: fivePercent()),
-                      child: Column(children: [
-                        MenuButton(
-                          icon: Icons.lock,
-                          fx: () =>{setState(()=>{
-                            _rules.showAlert = true,
-                            _rules.text = Language.alertGrammar
-                          })},
-                          label: Language.grammar,
-                        )
+                      padding: EdgeInsets.only(top: fivePercent()),
+                      child: Row(children: [
+                        Padding(
+                            padding: EdgeInsets.only(left: fivePercent() * 1.5),
+                            child: MenuButton(
+                              icon: Icons.lock,
+                              fx: () => {
+                                setState(() => {
+                                      _rules.showAlert = true,
+                                      _rules.text = Language.alertStackAutomaton
+                                    })
+                              },
+                              label: Language.stackFda,
+                            )),
+                        Padding(
+                            padding: EdgeInsets.only(left: fivePercent()),
+                            child: Column(children: [
+                              MenuButton(
+                                icon: Icons.lock,
+                                fx: () => {
+                                  setState(() => {
+                                        _rules.showAlert = true,
+                                        _rules.text = Language.alertGrammar
+                                      })
+                                },
+                                label: Language.grammar,
+                              )
+                            ])),
                       ])),
-                ])),
-            Padding(
-                padding: EdgeInsets.only(top: fivePercent()),
-                child: Row(children: [
                   Padding(
-                      padding: EdgeInsets.only(left: fivePercent() * 1.5),
-                      child: MenuButton(
-                        icon: Icons.lock,
-                        fx: () =>{setState(()=>{
-                          _rules.showAlert = true,
-                          _rules.text = Language.alertStackAutomaton
-                        })},
-                        label: Language.regularExp,
-                      ))
-                ]))
-          ])),
+                      padding: EdgeInsets.only(top: fivePercent()),
+                      child: Row(children: [
+                        Padding(
+                            padding: EdgeInsets.only(left: fivePercent() * 1.5),
+                            child: MenuButton(
+                              icon: Icons.lock,
+                              fx: () => {
+                                setState(() => {
+                                      _rules.showAlert = true,
+                                      _rules.text = Language.alertStackAutomaton
+                                    })
+                              },
+                              label: Language.regularExp,
+                            )),
+                        Padding(
+                            padding: EdgeInsets.only(left: fivePercent()),
+                            child: Column(children: [
+                              MenuButton(
+                                icon: Icons.lock,
+                                fx: () => {
+                                  setState(() => {
+                                        _rules.showAlert = true,
+                                        _rules.text = Language.alertTuringMachine
+                                      })
+                                },
+                                label: Language.turingMachine,
+                              )
+                            ]))
+                      ]))
+                ])),
     ));
   }
 }

@@ -15,7 +15,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   TransformationController _transformator = TransformationController();
-  double sizeC = 100000;
+  double sizeC = 50000;
 
   updateContainer() {
     //_transformator.value = Matrix4.identity()..translate(50000.0, 50000.0); go to center inicial
