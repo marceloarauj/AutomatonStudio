@@ -27,7 +27,19 @@ class _LoadViewState extends State<LoadView> {
               List<String>? files = snapshot.data as List<String>?;
 
               if (files!.isEmpty) {
-                return Container();
+                return Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(Language.loadEmptyProjects, 
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "Tittilium",
+                      fontSize: 45
+                    ))
+                  ) 
+                );
               }
               return SingleChildScrollView(
                   child: Padding(

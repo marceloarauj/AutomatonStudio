@@ -35,6 +35,7 @@ class Language {
   static String alertfnda = "non-deterministic automaton unavaible";
   // alerts
   static String initialStateNotFound = "Could not find an initial state";
+  static String loadEmptyProjects = "There are no projects to edit";
 
   static void changeLanguage(LanguageEnum language){
     
@@ -66,12 +67,13 @@ class Language {
         saveProject = "Salvar o projeto ?";
         close = "Fechar";
         filename= "Nome do arquivo";
+        loadEmptyProjects = "Não existem projetos para edição";
         
         //alertTexts pt-br
         mandoryFilename = filename + " Obrigatório"; 
         savedProject = "Projeto salvo com sucesso";
         initialStateNotFound = "Não foi possível encontrar um estado inicial";
-        
+
         Language.selectedIcon =  Image.asset('icons/flags/png/br.png', package: 'country_icons');
         selected = LanguageEnum.Portuguese;
       break;
@@ -102,6 +104,7 @@ class Language {
         saveProject = "Save Project ?";
         close = "Close";
         filename= "Filename";
+        loadEmptyProjects = "There are no projects to edit";
 
         //alert Texts
         mandoryFilename = "Filename is mandatory";
