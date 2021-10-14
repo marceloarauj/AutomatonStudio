@@ -142,7 +142,7 @@ class TransitionView extends CustomPainter{
     arrowPath = ArrowPath.make(path: arrowPath);
     canvas.drawPath(arrowPath, paint..color = getArrowColor());
   
-    canvas.drawPath(squarePath, paint..color = Colors.red);
+    //canvas.drawPath(squarePath, paint..color = Colors.red);
   }
 
   @override

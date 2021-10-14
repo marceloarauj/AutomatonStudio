@@ -215,6 +215,12 @@ class FdaRules{
     transitionFocus = null;
   }
 
+  updateLabel(String label){
+    var state = stateList.where((element) => (element.ID == stateFocus!.ID)).first;
+    state.label = label;
+    this.updateState!.call();
+  }
+
   List<String> saveTransition(String transition){
     transition = transition.toLowerCase();
     transition = transition.replaceAll(RegExp(r'[^\w\s]+'), '');

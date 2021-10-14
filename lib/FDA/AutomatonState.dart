@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 class AutomatonState {
   
-  String? label;
+  String label = "";
   bool initialState = false;
   bool finalState = false;
   Image stateImage = Image.asset("assets/normal_state.png");

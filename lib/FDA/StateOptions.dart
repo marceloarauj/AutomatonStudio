@@ -43,18 +43,44 @@ class _StateOptionsState extends State<StateOptions> {
     widget.update.call();
   }
 
+  TextEditingController labelController = TextEditingController();
+
+  @override
+  void initState() {
+
+    labelController.addListener(() {
+      widget.rules.updateLabel(labelController.text);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    
+    if(widget.state != null){
+      labelController.text = widget.state!.label;
+    }
+
     return widget.state == null
         ? Container()
         : Transform(
             transform: Matrix4.translationValues(
                 widget.state!.posX + 60, widget.state!.posY, 0),
             child: Container(
-                width: 120,
-                height: 145,
+                width: 150,
+                height: 195,
                 color: Colors.grey.shade100,
                 child: Column(children: [
+                  Container(child:
+                    TextField(
+                      textAlign: TextAlign.center,
+                      controller: labelController,
+                      maxLength: 7,
+                      decoration: InputDecoration(
+                        counterText: "",
+                        hintText: "label"
+                      )
+                    )
+                  ),
                   Row(children: [
                     Checkbox(
                         value: widget.state!.initialState,
@@ -77,7 +103,7 @@ class _StateOptionsState extends State<StateOptions> {
                   ]),
                   Row(children: [
                     Container(
-                        width: 120,
+                        width: 150,
                         child: OutlinedButton(
                             child: Row(
                               children: [

@@ -16,7 +16,7 @@ import 'package:flutter/services.dart';
 
 class FdaView extends StatefulWidget {
   const FdaView({Key? key}) : super(key: key);
-  
+
   @override
   _FdaViewState createState() => _FdaViewState();
 }
@@ -53,10 +53,10 @@ class _FdaViewState extends State<FdaView> {
 
   @override
   Widget build(BuildContext context) {
+    FiniteDeterministicModel args =
+        ModalRoute.of(context)!.settings.arguments as FiniteDeterministicModel;
 
-    FiniteDeterministicModel args = ModalRoute.of(context)!.settings.arguments as FiniteDeterministicModel;
-
-    if(args != null && firstCharge){
+    if (args != null && firstCharge) {
       rules.openProject(args);
       //firstCharge = false;
       //updateState();
@@ -84,13 +84,15 @@ class _FdaViewState extends State<FdaView> {
     List<Widget> children = [];
 
     children.add(Transform(
-        transform: Matrix4.translationValues((-rules.screenX) ,(-rules.screenY), 0),
-        child:Alert(type: rules.alertType, 
-                text: rules.alertText, 
-                show: rules.showAlert, 
-                alertCallback: rules.alertTimer(this), 
-                width: MediaQuery.of(context).size.width * 0.9, 
-                height: MediaQuery.of(context).size.height)));
+        transform:
+            Matrix4.translationValues((-rules.screenX), (-rules.screenY), 0),
+        child: Alert(
+            type: rules.alertType,
+            text: rules.alertText,
+            show: rules.showAlert,
+            alertCallback: rules.alertTimer(this),
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height)));
 
     //States
     for (int x = 0; x < rules.stateList.length; x++) {
@@ -98,7 +100,13 @@ class _FdaViewState extends State<FdaView> {
 
       children.add(Transform(
           transform: Matrix4.translationValues(state.posX, state.posY, 0),
-          child: Container(child: state.stateImage)));
+          child: Container(
+              child: Column(children: [
+            state.stateImage,
+            Text(state.label,
+                style: TextStyle(
+                    color: Colors.white, fontFamily: "Tittilium", fontSize: 16))
+          ]))));
     }
 
     //Transitions
@@ -134,26 +142,28 @@ class _FdaViewState extends State<FdaView> {
             screenHeight: MediaQuery.of(context).size.height)));
 
     //Save Modal
-    children.add(
-        Transform(
-                transform: Matrix4.translationValues(
-                    100 + (-rules.screenX), 20 + (-rules.screenY), 0),
-                child: SaveModal(screenWidth: MediaQuery.of(context).size.width * 0.9, 
-                                 screenHeight: MediaQuery.of(context).size.height, 
-                                 visible: rules.showSave, 
-                                 filename: rules.filename,
-                                 changeFilename: rules.changeFilename,
-                                 close: rules.closeModalSave,
-                                 save: rules.saveProject))
-    );
+    children.add(Transform(
+        transform: Matrix4.translationValues(
+            100 + (-rules.screenX), 20 + (-rules.screenY), 0),
+        child: SaveModal(
+            screenWidth: MediaQuery.of(context).size.width * 0.9,
+            screenHeight: MediaQuery.of(context).size.height,
+            visible: rules.showSave,
+            filename: rules.filename,
+            changeFilename: rules.changeFilename,
+            close: rules.closeModalSave,
+            save: rules.saveProject)));
 
     //Save widget configurations
     var positionSaveWidth = (MediaQuery.of(context).size.width * 0.9) - 100;
     var positionSaveHeight = MediaQuery.of(context).size.height - 80;
     children.add(Transform(
-        transform: Matrix4.translationValues(positionSaveWidth + (-rules.screenX) , positionSaveHeight + (-rules.screenY), 0),
+        transform: Matrix4.translationValues(
+            positionSaveWidth + (-rules.screenX),
+            positionSaveHeight + (-rules.screenY),
+            0),
         child: RawMaterialButton(
-          onPressed: ()=> {rules.showSave = true, updateState()},
+          onPressed: () => {rules.showSave = true, updateState()},
           elevation: 2.0,
           fillColor: Colors.grey.shade200,
           child: Icon(
