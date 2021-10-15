@@ -26,6 +26,7 @@ dependencies:
   masked_text: ^0.0.6
   path_provider: ^2.0.2
   json_annotation: ^4.1.0
+  vector_math: ^2.1.0
   flutter:
     sdk: flutter
 

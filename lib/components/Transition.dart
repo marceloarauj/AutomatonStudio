@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:arrow_path/arrow_path.dart';
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math.dart' as Math;
 
 class Transition{
   
@@ -18,8 +21,29 @@ class Transition{
     _UpdateArrowDirection();
   }
 
+  double getThetaAngle(Offset from, Offset to){
+     double difX = to.dx - from.dx;
+     double difY = to.dy - from.dy;
+
+     double rotation = -atan2(difX, difY); // angle theta -pi..pi
+     double degreesRotation = Math.degrees(rotation) + 180;
+
+     return Math.radians(degreesRotation);
+  }
+
+  Offset getOffsetCircle(double centerX, double centerY, double radians){
+    double radius = 25;
+
+    radians = radians - Math.radians(90.0);
+
+    int x = ((cos(radians) * radius) + centerX).round();
+    int y = ((sin(radians) * radius) + centerY).round();
+
+    return Offset(x.toDouble(),y.toDouble());
+  }
+
   void _UpdateArrowDirection(){
-    //right validations
+
     if(isSelfTransaction()){
       fromY = fromY + 0;
       fromX = fromX + 25;
@@ -27,50 +51,27 @@ class Transition{
       toY = fromY;
       return;
     }
+    
+    double centerFromX = fromX + 25;
+    double centerFromY = fromY + 25;
+    double centerToX = toX + 25;
+    double centerToY = toY + 25;
 
-    if(toX > fromX){
-      fromX = fromX + 50;
-      if(toY < fromY){
-        toY = toY - fromY + 50;
-        toX = toX - fromX;
-      }
-      else if(toY == fromY){
-        fromY = fromY + 25;
-      }
-      else if(toY > fromY){
-        fromY = fromY + 50;
-        toY = toY - fromY;
-        toX = toX - fromX;
-      }
-    }
-    //left validations
-    else if(toX < fromX){
-      if(toY < fromY){
-        toX = toX - fromX + 50;
-        toY = toY - fromY + 50;
-      }
-      else if(toY == fromY){
-        fromY = fromY + 25;
-      }
-      else if(toY > fromY){
-        toX = toX - fromX + 50;
-        toY = toY - fromY - 50;
-        fromY = fromY + 50;
-      }
-    }
-    //middle X validations
-    else if(toX == fromX){
-      fromX = fromX + 25;
-      if(toY < fromY){
-        fromY = 0;
-      }
-      else if(toY == fromY){
-        fromY = fromY + 25;
-      }
-      else if(toY > fromY){
-        fromY = fromY + 50;
-      }
-    }
+    Offset from = Offset(fromX, fromY);
+    Offset to = Offset(toX, toY);
+
+    double fromRadiansAngle = getThetaAngle(from, to);
+    double toRadiansAngle = getThetaAngle(to, from);
+
+    Offset fromPoints = getOffsetCircle(centerFromX, centerFromY, fromRadiansAngle);
+    Offset toPoints = getOffsetCircle(centerToX, centerToY, toRadiansAngle);
+
+    fromX = fromPoints.dx;
+    fromY = fromPoints.dy;
+
+    toX = toPoints.dx;
+    toY = toPoints.dy;
+
   }
 
   void alterFocus(bool focus){
@@ -103,8 +104,8 @@ class TransitionView extends CustomPainter{
     List<Offset> points = [];
     points.add(Offset(transition.fromX - 10,transition.fromY - 10));
     points.add(Offset(transition.fromX + 10,transition.fromY + 10));
-    points.add(Offset(transition.toX + transition.fromX + 10, transition.toY+ transition.fromY + 10));
-    points.add(Offset(transition.toX + transition.fromX - 10, transition.toY+ transition.fromY - 10));
+    points.add(Offset(transition.toX, transition.toY + 10));
+    points.add(Offset(transition.toX, transition.toY - 10));
 
     return points;
   }
@@ -136,13 +137,13 @@ class TransitionView extends CustomPainter{
     if(transition.isSelfTransaction()){
       arrowPath.relativeCubicTo(-120, -80, 120, -80, 10, -2);
     }else{
-      arrowPath.relativeCubicTo(0, 0, x2, y2, transition.toX, transition.toY);
+      arrowPath.lineTo(transition.toX, transition.toY);
     }
 
     arrowPath = ArrowPath.make(path: arrowPath);
     canvas.drawPath(arrowPath, paint..color = getArrowColor());
   
-    //canvas.drawPath(squarePath, paint..color = Colors.red);
+    //canvas.drawPath(squarePath, paint..color = Colors.red); debug
   }
 
   @override
