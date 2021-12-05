@@ -1,11 +1,9 @@
 Implementação de linguagens formais e autômatos
 
-- Aplicar Autômatos deterministicos e não deterministicos
+- Aplicar Autômatos deterministicos
 - Mapa de itens
-- Opção desfazer e refazer
 - Módulo de salvamento
 - Módulo de carregamento
-- Darkmode
 
 
 
